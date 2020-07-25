@@ -1,19 +1,16 @@
 <template>
   <div id="app" class="d-flex">
-    <AddNode></AddNode>
-    <ListNodes></ListNodes>
+    <StoriesList></StoriesList>
   </div>
 </template>
 
 <script>
-import AddNode from './nodes/AddNode.vue';
-import ListNodes from './nodes/ListNodes.vue'
+import StoriesList from './nodes/StoriesList.vue'
 
 export default {
   name: "Base",
   components: {
-    ListNodes,
-    AddNode
+    StoriesList,
   }
 }
 </script>

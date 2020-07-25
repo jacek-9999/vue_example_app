@@ -10,9 +10,9 @@ export function getStoryNodes(callback) {
 
 }
 */
-export function getSingleNode(callback) {
+export function getNode(id, callback) {
     axios
-        .get(endPoint + '/node/1')
+        .get(endPoint + '/node/' + id)
         .then(response => (
             callback(response.data)
         ))
@@ -21,15 +21,34 @@ export function getSingleNode(callback) {
         });
 }
 
+export function getStory(id, callback) {
+    axios
+        .get(endPoint + '/story/' + id)
+        .then(response => (
+            callback(response.data)
+        ))
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+export function getAllStories(callback) {
+    axios
+        .get(endPoint + '/stories')
+        .then(response => (
+            callback(response.data)
+        ))
+        .catch(function (error) {
+            console.log(error);
+        });
+}
 /*
  * Story is basically one node with 'is_initial' flag set to true
 export function addStory({title, description}, callback) {
 
 }
 
-export function addNode({title, description}, callback) {
 
-}
 
 export function addOptionToNode({optionDescription, nodeId}, callback) {
 

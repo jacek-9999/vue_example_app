@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import './assets/custom.scss'
 import { BootstrapVue, IconsPlugin, LayoutPlugin } from 'bootstrap-vue'
-import { getSingleNode } from './api'
+import { getNode, getAllStories, getStory } from './api'
 
 
 Vue.config.productionTip = false
@@ -13,4 +13,6 @@ new Vue({
   render: h => h(App),
 }).$mount('#app')
 
-getSingleNode((data) => console.log(data));
+getNode(1, (data) => console.log(data));
+getStory(1, (data) => console.log(data));
+getAllStories( (data) => console.log(data));
