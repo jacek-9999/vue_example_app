@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import './assets/custom.scss'
 import { BootstrapVue, IconsPlugin, LayoutPlugin } from 'bootstrap-vue'
+import { getSingleNode } from './api'
 
 
 Vue.config.productionTip = false
@@ -11,3 +12,5 @@ Vue.use(LayoutPlugin)
 new Vue({
   render: h => h(App),
 }).$mount('#app')
+
+getSingleNode((data) => console.log(data));
