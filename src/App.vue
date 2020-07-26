@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <Base/>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Base from './components/Base.vue'
+// import StoriesListBase from "./components/StoriesListBase";
 
 export default {
   name: 'App',
   components: {
-    Base
+    // StoriesListBase
   }
 }
 </script>
