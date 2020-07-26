@@ -9,7 +9,7 @@
                 <div v-else>
                     <b-list-group-item v-for="item in stories_list" :key="item.story_id">
                         <router-link :to="{ path: 'nodes/'+item.story_id }">
-                            {{ item.description }}
+                            {{ item.title }}
                         </router-link>
                     </b-list-group-item>
                 </div>
