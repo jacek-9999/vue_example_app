@@ -1,16 +1,17 @@
 <template>
   <div id="app" class="d-flex">
-    <div>xxxx</div>
+    <StoryNodesList></StoryNodesList>
   </div>
 </template>
 
 <script>
-// import StoryNodesList from './nodes/StoryNodesList'
+import StoryNodesList from './nodes/StoryNodesList'
 
 export default {
+  props: ['node'],
   name: "StoryNodesListBase",
   components: {
-    // StoryNodesList,
+    StoryNodesList,
   }
 }
 </script>

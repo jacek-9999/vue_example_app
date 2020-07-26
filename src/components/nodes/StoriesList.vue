@@ -8,7 +8,9 @@
                 </div>
                 <div v-else>
                     <b-list-group-item v-for="item in stories_list" :key="item.story_id">
-                        {{ item.description }}
+                        <router-link :to="{ path: 'nodes/'+item.story_id }">
+                            {{ item.description }}
+                        </router-link>
                     </b-list-group-item>
                 </div>
             </b-list-group>

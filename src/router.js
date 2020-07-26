@@ -15,7 +15,7 @@ export default new Router({
             component: StoriesListBase
         },
         {
-            path: '/nodes',
+            path: '/nodes/:story_id',
             name: 'nodes',
             component: StoriesNodesListBase
         }
