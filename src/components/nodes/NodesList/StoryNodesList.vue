@@ -2,14 +2,13 @@
     <div class="ListNodes col-9 mx-auto">
         <b-list-group>
             <b-list-group-item variant="primary">List of Action Nodes:</b-list-group-item>
-            <div v-if="stories_list.loading" class="text-center">
+            <div v-if="fetch_stories_from_api.loading" class="text-center">
                 <br/>
                 <b-spinner variant="primary" label="Spinning"></b-spinner>
             </div>
             <div v-else>
-                <b-list-group-item v-for="item in stories[getStoryId()]" :key="item.id">
-                        {{ item.description }}
-                </b-list-group-item>
+                <NodesListElement v-for="item in stories[getStoryId()]" :key="item.id" :item="item">
+                </NodesListElement>
             </div>
         </b-list-group>
     </div>
@@ -17,9 +16,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import NodesListElement from "./NodesListElement";
 
 export default {
     name: "ListNodes",
+    components: {NodesListElement},
     methods: {
         getStoryId() {
             return this.$route.params.story_id;
@@ -30,7 +31,8 @@ export default {
     },
     computed: mapGetters({
         stories_list: 'stories_list',
-        stories: 'stories'
+        stories: 'stories',
+        fetch_stories_from_api: 'fetch_stories_from_api'
     }),
 }
 </script>

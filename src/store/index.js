@@ -12,8 +12,10 @@ const state = {
 
     },
     stories_list: {
-        loading: true
-
+    },
+    fetch_stories_from_api: {
+        loading: true,
+        requests_pending: 0
     }
 };
 
