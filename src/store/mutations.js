@@ -5,7 +5,7 @@ import store from './index'
 export default {
     receiveStories(state, stories) {
         stories.forEach(story => {
-            Vue.set(state.stories_list, 'story' + story.story_id, story.story_id);
+            Vue.set(state.stories_list, 'story' + story.story_id, story);
             getStory(store, story.story_id)
         })
     },
