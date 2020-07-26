@@ -1,5 +1,5 @@
 <template>
-    <div class="StoriesList col-6">
+    <div class="StoriesList col-9 mx-auto">
             <b-list-group>
                 <b-list-group-item variant="primary">List of Stories:</b-list-group-item>
                 <div v-if="stories_list.loading" class="text-center">
