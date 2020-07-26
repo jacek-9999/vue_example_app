@@ -1,7 +1,7 @@
 <template>
     <div class="StoriesList col-9 mx-auto">
             <b-list-group>
-                <b-list-group-item variant="primary">List of Stories:</b-list-group-item>
+                <b-list-group-item variant="dark">List of Stories:</b-list-group-item>
                 <div v-if="fetch_stories_from_api.loading" class="text-center">
                     <br/>
                     <b-spinner variant="primary" label="Spinning"></b-spinner>

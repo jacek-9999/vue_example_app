@@ -39,7 +39,7 @@ export default {
 <style lang="scss" scoped>
     .wrapper-marker {
         :hover {
-            background-color: #9fcdff;
+            background-color: #c4c9b7
         }
     }
 
