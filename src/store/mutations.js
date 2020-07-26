@@ -6,6 +6,7 @@ export default {
     receiveStories(state, stories) {
         stories.forEach(story => {
             Vue.set(state.stories_list, 'story' + story.story_id, story);
+            Vue.set(state.stories_list, 'loading', false);
             getStory(store, story.story_id)
         })
     },

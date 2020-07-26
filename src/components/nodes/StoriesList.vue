@@ -1,16 +1,17 @@
 <template>
     <div class="StoriesList col-6">
-        <div>
-            {{stories_list}}
-        </div>
-        <h1>List of Nodes:</h1>
-        <div
-                v-for="n in 12"
-                v-bind:key="n"
-                class="color"
-                :style="{ backgroundColor: getColor(n) }">
-            Node {{n}}
-        </div>
+            <b-list-group>
+                <b-list-group-item variant="primary">List of Stories:</b-list-group-item>
+                <div v-if="stories_list.loading" class="text-center">
+                    <br/>
+                    <b-spinner variant="primary" label="Spinning"></b-spinner>
+                </div>
+                <div v-else>
+                    <b-list-group-item v-for="item in stories_list" :key="item.story_id">
+                        {{ item.description }}
+                    </b-list-group-item>
+                </div>
+            </b-list-group>
     </div>
 </template>
 

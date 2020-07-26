@@ -12,6 +12,7 @@ const state = {
 
     },
     stories_list: {
+        loading: true
 
     }
 };
