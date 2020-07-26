@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import StoriesList from './nodes/StoriesList.vue'
+import StoriesList from './StoriesList.vue'
 
 export default {
   name: "StoriesListBase",

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import StoriesListBase from './components/StoriesListBase'
-import StoriesNodesListBase from './components/StoryNodesListBase'
+import StoriesListBase from './components/nodes/StoriesList/StoriesListBase'
+import StoriesNodesListBase from './components/nodes/NodesList/StoryNodesListBase'
 
 Vue.use(Router);
 

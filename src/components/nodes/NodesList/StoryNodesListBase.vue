@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import StoryNodesList from './nodes/StoryNodesList'
+import StoryNodesList from './StoryNodesList'
 
 export default {
   props: ['node'],
