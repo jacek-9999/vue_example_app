@@ -19,15 +19,17 @@ export const getStory = ({ commit }, id) => {
 
 export const getNodeById = ({commit}, id) => {
     commit('isLoading', true);
-    api.getNode(id, (node) => {
-        commit('receiveNode', node);
-        commit('isLoading', false);
-    });
+    return api.getNode(id)
+        .then((data) => {
+            commit('isLoading', false);
+            return data;
+        });
 };
 export const updateNode = ({commit}, data) => {
     commit('isLoading', true);
-    api.updateNode(data, (node) => {
-        commit('receiveNode', node);
-        commit('isLoading', false);
-    });
+    return api.updateNode(data)
+        .then((data) => {
+            commit('isLoading', false);
+            return data;
+        });
 };

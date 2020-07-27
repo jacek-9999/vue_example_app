@@ -51,7 +51,7 @@
             <div class="col-12">
                 <div class="d-flex justify-content-between">
                     <b-button v-on:click="cancel()" size="lg" variant="danger">
-                        cancel
+                        <b-icon icon="arrow-left"></b-icon>back
                     </b-button>
                     <b-button  v-on:click="submit()" size="lg" variant="success">
                         save
@@ -70,7 +70,9 @@ export default {
     name: "NodeEditForm",
     methods: {
         cancel: function () {
-            this.$router.go(-1);
+            this.$store.dispatch('getAllStories').then(() => {
+                this.$router.go(-1);
+            });
         },
         submit: function () {
             let data = {
@@ -79,33 +81,29 @@ export default {
                 'is_final': this.is_final,
                 'id': this.$route.params.node_id
             };
-            this.$store.dispatch(
-                'updateNode',
-                data
-            ).then(() => {
-               setTimeout(() => {
-                   if (this.$store.getters.node(this.$route.params.node_id) !== undefined) {
-                       this.title =  this.$store.getters.node(this.$route.params.node_id).title;
-                       this.description =  this.$store.getters.node(this.$route.params.node_id).description;
-                       this.is_final =  [this.$store.getters.node(this.$route.params.node_id).is_final];
-                   }
-               }, 2000);
-            });
+            this.$store.dispatch('updateNode', data)
+                .then((data) => {
+                    this.title = data.data.title;
+                    this.description = data.data.description;
+                    this.is_final = [data.data.is_final];
+                    return data;
+                }).catch((err) => {
+                    console.log(err);
+                });
         }
     },
     beforeMount: function() {
        this.$store
            .dispatch('getNodeById', this.$route.params.node_id)
-           .then(() => {
-               setTimeout(() => {
-                   if (this.$store.getters.node(this.$route.params.node_id) !== undefined) {
-                       this.title =  this.$store.getters.node(this.$route.params.node_id).title;
-                       this.description =  this.$store.getters.node(this.$route.params.node_id).description;
-                       this.is_final =  [this.$store.getters.node(this.$route.params.node_id).is_final];
-                   }
-               }, 2000);
+           .then((data) => {
+               this.title = data.data.title;
+               this.description = data.data.description;
+               this.is_final = [data.data.is_final];
+               return data;
+           }).catch((err) => {
+               console.log(err);
            });
-    },
+       },
     computed: {
         ...mapGetters({
             fetch_stories_from_api: 'fetch_stories_from_api',
