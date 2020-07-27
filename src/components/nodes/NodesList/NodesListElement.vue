@@ -1,20 +1,23 @@
 <template>
     <div @mouseover="hover = true" @mouseleave="hover = false">
-        <div class="wrapper-marker">
         <b-list-group-item>
             <div class="row">
                 <div class="col-11">{{item.description}} {{item}} </div>
+                <div class="col-1">
+                    <b-button variant="success">
+                        <b-icon icon="question-circle"></b-icon>
+                        <div v-if="hover" allign-v="end">
+                            <b-button v-on:click="navToEditForm(item.id)" variant="info">
+                                <b-icon icon="pencil"></b-icon>
+                            </b-button>
+                            <b-button v-on:click="navToDeleteForm(item.id)" variant="danger">
+                                <b-icon icon="trash"></b-icon>
+                            </b-button>
+                        </div>
+                    </b-button>
+                </div>
             </div>
         </b-list-group-item>
-        </div>
-        <div v-if="hover" allign-v="end">
-            <b-button v-on:click="navToEditForm(item.id)" variant="info">
-                <b-icon icon="pencil"></b-icon>
-            </b-button>
-            <b-button v-on:click="navToDeleteForm(item.id)" variant="danger">
-                <b-icon icon="trash"></b-icon>
-            </b-button>
-        </div>
     <hr>
     </div>
 </template>
@@ -46,12 +49,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .wrapper-marker {
-        :hover {
-            background-color: #9fcdff;
-            /*border-style: solid;*/
-            /*border-width: 1px;*/
-        }
-    }
-
+.row {
+    cursor: pointer;
+}
 </style>
