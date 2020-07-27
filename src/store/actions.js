@@ -24,3 +24,10 @@ export const getNodeById = ({commit}, id) => {
         commit('isLoading', false);
     });
 };
+export const updateNode = ({commit}, data) => {
+    commit('isLoading', true);
+    api.updateNode(data, (node) => {
+        commit('receiveNode', node);
+        commit('isLoading', false);
+    });
+};

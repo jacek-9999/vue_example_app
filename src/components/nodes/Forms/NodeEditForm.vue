@@ -50,8 +50,12 @@
             <hr>
             <div class="col-12">
                 <div class="d-flex justify-content-between">
-                    <b-button v-on:click="cancel()" size="lg" variant="danger">cancel</b-button>
-                    <b-button size="lg" variant="success">save</b-button>
+                    <b-button v-on:click="cancel()" size="lg" variant="danger">
+                        cancel
+                    </b-button>
+                    <b-button  v-on:click="submit()" size="lg" variant="success">
+                        save
+                    </b-button>
                 </div>
             </div>
 
@@ -60,13 +64,33 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
     name: "NodeEditForm",
     methods: {
         cancel: function () {
             this.$router.go(-1);
+        },
+        submit: function () {
+            let data = {
+                'title': this.title,
+                'description': this.description,
+                'is_final': this.is_final,
+                'id': this.$route.params.node_id
+            };
+            this.$store.dispatch(
+                'updateNode',
+                data
+            ).then(() => {
+               setTimeout(() => {
+                   if (this.$store.getters.node(this.$route.params.node_id) !== undefined) {
+                       this.title =  this.$store.getters.node(this.$route.params.node_id).title;
+                       this.description =  this.$store.getters.node(this.$route.params.node_id).description;
+                       this.is_final =  [this.$store.getters.node(this.$route.params.node_id).is_final];
+                   }
+               }, 2000);
+            });
         }
     },
     beforeMount: function() {
@@ -79,7 +103,7 @@ export default {
                        this.description =  this.$store.getters.node(this.$route.params.node_id).description;
                        this.is_final =  [this.$store.getters.node(this.$route.params.node_id).is_final];
                    }
-               }, 1000);
+               }, 2000);
            });
     },
     computed: {

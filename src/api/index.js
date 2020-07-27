@@ -1,6 +1,9 @@
 import axios from 'axios';
 
 const endPoint = 'http://localhost:8080';
+// axios.defaults.baseURL = 'http://';
+axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 /*
 export function listStories(callback) {
 
@@ -35,6 +38,17 @@ export function getStory(id, callback) {
 export function getAllStories(callback) {
     axios
         .get(endPoint + '/stories')
+        .then(response => (
+            callback(response.data)
+        ))
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+export function updateNode(data, callback) {
+    axios
+        .patch(endPoint + '/node/' + data.id, data)
         .then(response => (
             callback(response.data)
         ))
