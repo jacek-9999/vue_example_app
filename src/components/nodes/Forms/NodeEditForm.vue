@@ -50,7 +50,7 @@
             <hr>
             <div class="col-12">
                 <div class="d-flex justify-content-between">
-                    <b-button size="lg" variant="danger">cancel</b-button>
+                    <b-button v-on:click="cancel()" size="lg" variant="danger">cancel</b-button>
                     <b-button size="lg" variant="success">save</b-button>
                 </div>
             </div>
@@ -64,7 +64,11 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: "NodeEditForm",
-    methods: {},
+    methods: {
+        cancel: function () {
+            this.$router.go(-1);
+        }
+    },
     beforeMount: function() {
        this.$store
            .dispatch('getNodeById', this.$route.params.node_id)
@@ -75,7 +79,7 @@ export default {
                        this.description =  this.$store.getters.node(this.$route.params.node_id).description;
                        this.is_final =  [this.$store.getters.node(this.$route.params.node_id).is_final];
                    }
-               }, 2000);
+               }, 1000);
            });
     },
     computed: {
