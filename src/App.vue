@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <navbar></navbar>
     <router-view/>
   </div>
 </template>
@@ -7,9 +8,11 @@
 <script>
 // import StoriesListBase from "./components/StoriesListBase";
 
+import Navbar from "./components/nodes/Layout/Navbar";
 export default {
   name: 'App',
   components: {
+    Navbar
     // StoriesListBase
   }
 }
