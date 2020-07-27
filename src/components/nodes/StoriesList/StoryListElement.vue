@@ -7,10 +7,10 @@
                     <b-button variant="success">
                         <b-icon icon="question-circle"></b-icon>
                         <div v-if="hover" allign-v="end">
-                            <b-button v-on:click="navToEditForm(item.id)" variant="info">
+                            <b-button v-on:click.stop="navToEditForm(item.id)" variant="info">
                                 <b-icon icon="pencil"></b-icon>
                             </b-button>
-                            <b-button v-on:click="navToDeleteForm(item.id)" variant="danger">
+                            <b-button v-on:click.stop="navToDeleteForm(item.id)" variant="danger">
                                 <b-icon icon="trash"></b-icon>
                             </b-button>
                         </div>

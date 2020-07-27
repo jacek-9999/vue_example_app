@@ -1,40 +1,99 @@
 <template>
-    <div class="col-6">
-        <h1>Node Edit</h1>
-        <b-button size="sm" @click="toggle">
-            {{ show ? 'Hide' : 'Show' }} Alert
-        </b-button>
-        <b-alert
-                v-model="show"
-                class="mt-3 col-6"
-                dismissible
-                @dismissed="dismissed"
+    <b-card bg-variant="light">
+        <b-form-group
+            label-cols-lg="3"
+            label="Action Node Edit"
+            label-size="lg"
+            label-class="font-weight-bold pt-0"
+            class="mb-0"
         >
-            Add new Node
-        </b-alert>
-    </div>
+            <b-form-group
+                    id="fieldset-1"
+                    description="Edit Title"
+                    label=""
+                    label-for="input-title"
+                    :invalid-feedback="invalidTitleFeedback"
+                    :valid-feedback="validTitleFeedback"
+                    :state="titleState"
+            >
+                <b-form-input id="input-title" v-model="title" :state="titleState"></b-form-input>
+            </b-form-group>
+            <b-form-group
+                    id="fieldset-2"
+                    description="Edit Description"
+                    label=""
+                    label-for="input-description"
+                    :invalid-feedback="invalidDescriptionFeedback"
+                    :valid-feedback="validDescriptionFeedback"
+                    :state="descriptionState"
+            >
+                <b-form-textarea
+                        id="textarea"
+                        v-model="description"
+                        placeholder="Enter something..."
+                        rows="3"
+                        max-rows="6"
+                ></b-form-textarea>
+            </b-form-group>
+            <b-form-group>
+                <b-form-checkbox-group
+                        id="fieldset-3"
+                        v-model="is_final"
+                        :options="options"
+                        name="is_final_checkbox"
+                ></b-form-checkbox-group>
+            </b-form-group>
+            <hr>
+            <b-button variant="success">save</b-button>
+            <b-button variant="danger">cancel</b-button>
+        </b-form-group>
+    </b-card>
 </template>
 
 <script>
 export default {
     name: "NodeEditForm",
-    data() {
-    return {
-        show: true
-    }
-},
-    watch: {
-        show(newVal) {
-            console.log('Alert is now ' + (newVal ? 'visible' : 'hidden'))
+    computed: {
+        titleState() {
+            console.log(this.title);
+            return this.title.length > 1 ? true : false
+            // return true;
+        },
+        descriptionState() {
+            console.log(this.description);
+            return this.description.length > 1 ? true : false
+        },
+        invalidTitleFeedback() {
+            if (this.title.length < 1) {
+                return 'Title is empty.'
+            } else {
+                return 'Wrong title data.'
+            }
+        },
+        invalidDescriptionFeedback() {
+            if (this.title.length < 1) {
+                return 'Description is empty.'
+            } else {
+                return 'Wrong description data.'
+            }
+        },
+        validTitleFeedback() {
+            return 'Submit'
+            // return this.state === true ? 'Thank you' : ''
+        },
+        validDescriptionFeedback() {
+            return 'Submit'
+            // return this.state === true ? 'Thank you' : ''
         }
     },
-    methods: {
-        toggle() {
-            console.log('Toggle button clicked')
-            this.show = !this.show
-        },
-        dismissed() {
-            console.log('Alert dismissed')
+    data() {
+        return {
+            title: '',
+            description: '',
+            is_final: [],
+            options: [
+                {text: 'Final Node', value: 1}
+            ]
         }
     }
 }
