@@ -16,3 +16,11 @@ export const getStory = ({ commit }, id) => {
         commit('isLoading', false);
     })
 };
+
+export const getNodeById = ({commit}, id) => {
+    commit('isLoading', true);
+    api.getNode(id, (node) => {
+        commit('receiveNode', node);
+        commit('isLoading', false);
+    });
+};

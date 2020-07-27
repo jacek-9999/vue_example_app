@@ -1,5 +1,9 @@
 <template>
-    <b-card bg-variant="light">
+    <div v-if="fetch_stories_from_api.loading" class="text-center">
+        <br/>
+        <b-spinner variant="primary" label="Spinning"></b-spinner>
+    </div>
+    <b-card v-else bg-variant="light">
         <b-form-group
             label-cols-lg="3"
             label="Action Node Edit"
@@ -44,23 +48,54 @@
                 ></b-form-checkbox-group>
             </b-form-group>
             <hr>
-            <b-button variant="success">save</b-button>
-            <b-button variant="danger">cancel</b-button>
+            <div class="col-12">
+                <div class="d-flex justify-content-between">
+                    <b-button size="lg" variant="danger">cancel</b-button>
+                    <b-button size="lg" variant="success">save</b-button>
+                </div>
+            </div>
+
         </b-form-group>
     </b-card>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
     name: "NodeEditForm",
+    methods: {
+        ...mapGetters({
+            fetch_stories_from_api: 'fetch_stories_from_api',
+            node: 'node'
+        }),
+        ...mapActions({
+            getNodeById: 'getNodeById'
+
+        }),
+    },
+    beforeMount: function() {
+       this.$store.dispatch('getNodeById', this.$route.params.node_id);
+    },
     computed: {
+        fillForm() {
+            // return this.$store.state.node[this.$route.params.node_id].title;
+            // console.log(this.$store.state.node);
+            // console.log(this.$route.params.node_id);
+            if (this.$store.getters.node(this.$route.params.node_id) !== undefined) {
+               // console.log(this.$store.getters.node(this.$route.params.node_id).title);
+                this.title =  this.$store.getters.node(this.$route.params.node_id).title;
+                this.description =  this.$store.getters.node(this.$route.params.node_id).description;
+                this.is_final =  [this.$store.getters.node(this.$route.params.node_id).is_final];
+            }
+            // console.log(this.$store.getters.node(this.$route.params.node_id));
+            // return );
+            // return this.$store.getters.node();
+        },
         titleState() {
-            console.log(this.title);
             return this.title.length > 1 ? true : false
-            // return true;
         },
         descriptionState() {
-            console.log(this.description);
             return this.description.length > 1 ? true : false
         },
         invalidTitleFeedback() {
