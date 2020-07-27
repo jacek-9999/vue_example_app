@@ -1,5 +1,6 @@
 <template>
     <div class="col-6">
+        <h1>Story Delete</h1>
         <b-button size="sm" @click="toggle">
             {{ show ? 'Hide' : 'Show' }} Alert
         </b-button>
@@ -16,7 +17,7 @@
 
 <script>
 export default {
-    name: "AddNode",
+    name: "StoryDeleteForm",
     data() {
     return {
         show: true

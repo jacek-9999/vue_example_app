@@ -8,10 +8,10 @@
         </b-list-group-item>
         </div>
         <div v-if="hover" allign-v="end">
-            <b-button class="node-edit-button" variant="info">
+            <b-button v-on:click="navToEditForm(item.id)" variant="info">
                 <b-icon icon="pencil"></b-icon>
             </b-button>
-            <b-button class="node-edit-button" variant="danger">
+            <b-button v-on:click="navToDeleteForm(item.id)" variant="danger">
                 <b-icon icon="trash"></b-icon>
             </b-button>
         </div>
@@ -24,6 +24,15 @@
 export default {
     name: "NodesListElement",
     methods: {
+        navToEditForm: function (id) {
+            this.$router.push({ name: 'nodesEdit', params: { node_id: id } })
+        },
+        navToDeleteForm: function (id) {
+            this.$router.push({ name: 'nodesDelete', params: { node_id: id } })
+        },
+        navToNewForm: function () {
+            this.$router.push({ name: 'nodesNew' })
+        },
     },
     data() {
         return {
