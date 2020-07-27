@@ -66,14 +66,17 @@ export default {
     name: "NodeEditForm",
     methods: {},
     beforeMount: function() {
-       this.$store.dispatch('getNodeById', this.$route.params.node_id);
-       setInterval(()=>{
-          if (this.$store.getters.node(this.$route.params.node_id) !== undefined) {
-              this.title =  this.$store.getters.node(this.$route.params.node_id).title;
-              this.description =  this.$store.getters.node(this.$route.params.node_id).description;
-              this.is_final =  [this.$store.getters.node(this.$route.params.node_id).is_final];
-          }
-       },1000);
+       this.$store
+           .dispatch('getNodeById', this.$route.params.node_id)
+           .then(() => {
+               setTimeout(() => {
+                   if (this.$store.getters.node(this.$route.params.node_id) !== undefined) {
+                       this.title =  this.$store.getters.node(this.$route.params.node_id).title;
+                       this.description =  this.$store.getters.node(this.$route.params.node_id).description;
+                       this.is_final =  [this.$store.getters.node(this.$route.params.node_id).is_final];
+                   }
+               }, 2000);
+           });
     },
     computed: {
         ...mapGetters({
