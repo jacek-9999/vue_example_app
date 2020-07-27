@@ -5,7 +5,7 @@
                 <div class="col-11">{{ item.title }}</div>
                 <div class="col-1">
                     <b-button variant="success">
-                        <b-icon icon="question-circle"></b-icon>
+                        <b-icon v-if="!hover" icon="question-circle"></b-icon>
                         <div v-if="hover" allign-v="end">
                             <b-button v-on:click.stop="navToEditForm(item.id)" variant="info">
                                 <b-icon icon="pencil"></b-icon>
