@@ -29,4 +29,8 @@ export default {
     prepareNodeToDelete(state, node) {
         state.node_prepared_to_delete = node;
     },
+    resetLoader(state) {
+        state.fetch_stories_from_api.loading = false;
+        state.fetch_stories_from_api.requests_pending = 0;
+    }
 }

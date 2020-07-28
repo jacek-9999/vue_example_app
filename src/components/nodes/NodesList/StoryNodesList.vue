@@ -25,9 +25,6 @@ export default {
     methods: {
         getStoryId() {
             return this.$route.params.story_id;
-        },
-        getColor(n) {
-            return `hsl(${(n - 1) * 30}, 100%, 75%)`;
         }
     },
     computed: mapGetters({

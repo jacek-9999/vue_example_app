@@ -100,8 +100,10 @@ export default {
                this.description = data.data.description;
                this.is_final = [data.data.is_final];
                return data;
-           }).catch((err) => {
-               console.log(err);
+           }).catch(() => {
+               this.$store.dispatch('resetLoader').then(() => {
+                   this.$router.go(-1);
+               });
            });
        },
     computed: {

@@ -22,11 +22,7 @@ import StoryListElement from "./StoryListElement";
 export default {
     name: "StoriesList",
     components: {StoryListElement},
-    methods: {
-        getColor(n) {
-            return `hsl(${(n - 1) * 30}, 100%, 75%)`;
-        }
-    },
+    methods: {},
     computed: mapGetters({
         stories_list: 'stories_list',
         stories: 'stories',

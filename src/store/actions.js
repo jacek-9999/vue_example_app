@@ -44,3 +44,6 @@ export const deleteNode = ({commit}, id) => {
             return data;
         });
 };
+export const resetLoader = ({commit}) => {
+    commit('resetLoader');
+};
