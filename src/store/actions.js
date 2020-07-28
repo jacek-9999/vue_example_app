@@ -33,3 +33,14 @@ export const updateNode = ({commit}, data) => {
             return data;
         });
 };
+export const prepareNodeToDelete = ({commit}, node) => {
+    commit('prepareNodeToDelete', node);
+};
+export const deleteNode = ({commit}, id) => {
+    commit('isLoading', true);
+    return api.deleteNode(id).then((data) => {
+            commit('prepareNodeToDelete', null);
+            commit('isLoading', false);
+            return data;
+        });
+};

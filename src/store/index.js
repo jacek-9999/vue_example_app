@@ -19,7 +19,8 @@ const state = {
     },
     node: {
 
-    }
+    },
+    node_prepared_to_delete: null
 };
 
 export default new Vuex.Store({

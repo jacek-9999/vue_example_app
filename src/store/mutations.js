@@ -25,5 +25,8 @@ export default {
             || (isLoading && (state.fetch_stories_from_api.requests_pending > 0))) {
             Vue.set(state.fetch_stories_from_api, 'loading', isLoading);
         }
-    }
+    },
+    prepareNodeToDelete(state, node) {
+        state.node_prepared_to_delete = node;
+    },
 }

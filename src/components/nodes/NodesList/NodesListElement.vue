@@ -2,7 +2,7 @@
     <div @mouseover="hover = true" @mouseleave="hover = false">
         <b-list-group-item>
             <div class="row">
-                <div class="col-11">{{item.description}} {{item}} </div>
+                <div class="col-11">{{item.title}}</div>
                 <div class="col-1">
                     <b-button variant="success">
                         <b-icon v-if="!hover" icon="question-circle"></b-icon>
@@ -10,7 +10,7 @@
                             <b-button v-on:click="navToEditForm(item.id)" variant="info">
                                 <b-icon icon="pencil"></b-icon>
                             </b-button>
-                            <b-button v-on:click="navToDeleteForm(item.id)" variant="danger">
+                            <b-button v-on:click="prepareDelete(item)" v-b-modal.delete-node-modal variant="danger">
                                 <b-icon icon="trash"></b-icon>
                             </b-button>
                         </div>
@@ -27,6 +27,9 @@
 export default {
     name: "NodesListElement",
     methods: {
+        prepareDelete: function(node) {
+            this.$store.dispatch('prepareNodeToDelete', node);
+        },
         navToEditForm: function (id) {
             this.$router.push({ name: 'nodesEdit', params: { node_id: id } })
         },

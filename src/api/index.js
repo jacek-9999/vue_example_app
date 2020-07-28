@@ -21,6 +21,9 @@ export function updateNode(data) {
     return axios.patch(endPoint + '/node/' + data.id, data);
 }
 
+export function deleteNode(id) {
+    return axios.delete(endPoint + '/node/' + id);
+}
 
 export function getStory(id, callback) {
     axios
