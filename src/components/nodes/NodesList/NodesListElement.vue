@@ -1,9 +1,16 @@
 <template>
     <div @mouseover="hover = true" @mouseleave="hover = false">
         <b-list-group-item>
-            <div class="row">
-                <div class="col-11">{{item.title}}</div>
-                <div class="col-1 edit-delete-node-control">
+            <div class="d-flex justify-content-between">
+                <div class="col-2">
+                    <b-col>
+                    <b-badge variant="dark">ID: {{item.id}}</b-badge>
+                    <b-badge variant="info">Parent ID: </b-badge>
+                    <b-badge variant="warning">Options IDs: </b-badge>
+                    </b-col>
+                </div>
+                <div>{{item.title}}</div>
+                <div class="edit-delete-node-control">
                     <b-button variant="info">
                         <b-icon v-if="!hover" icon="question-circle"></b-icon>
                         <div v-if="hover" allign-v="end">
