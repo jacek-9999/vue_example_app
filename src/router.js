@@ -54,7 +54,7 @@ export default new Router({
             component: NodeDeleteForm
         },
         {
-            path: '/nodes/new',
+            path: '/story/:story_id/nodes/new',
             name: 'nodesNew',
             component: NodeNewForm
         }

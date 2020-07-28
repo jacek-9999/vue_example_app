@@ -5,7 +5,7 @@
                 <div class="d-flex justify-content-between">
                 <div></div>
                     List of Action Nodes:
-                <b-button v-on:click="navToEditForm(item.id)" variant="success">
+                <b-button v-on:click="navToNewNodeForm" variant="success">
                     <b-icon icon="plus-square"></b-icon>
                 </b-button>
                 </div>
@@ -31,6 +31,12 @@ export default {
     name: "ListNodes",
     components: {NodesListElement},
     methods: {
+        navToNewNodeForm: function () {
+            this.$store.dispatch('prepareNodeToCreate', this.getStoryId())
+                .then(() => {
+                    this.$router.push({ name: 'nodesNew' })
+                });
+        },
         getStoryId() {
             return this.$route.params.story_id;
         }

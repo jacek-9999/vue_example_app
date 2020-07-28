@@ -1,6 +1,7 @@
 <template>
     <div class="col-6">
-        <h1>Node Delete</h1>
+        <h1>New Node</h1>
+        {{node_prepared_to_create}}
         <b-button size="sm" @click="toggle">
             {{ show ? 'Hide' : 'Show' }} Alert
         </b-button>
@@ -16,13 +17,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     name: "NodeNewForm",
-    data() {
-    return {
-        show: true
-    }
-},
+    data: () => {
+        return {
+            show: true,
+            story_id: null
+        }
+    },
     watch: {
         show(newVal) {
             console.log('Alert is now ' + (newVal ? 'visible' : 'hidden'))
@@ -36,6 +40,11 @@ export default {
         dismissed() {
             console.log('Alert dismissed')
         }
+    },
+    computed: {
+        ...mapGetters({
+            node_prepared_to_create: 'node_prepared_to_create'
+        }),
     }
 }
 </script>
