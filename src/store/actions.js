@@ -40,9 +40,6 @@ export const updateNode = ({commit}, data) => {
 export const prepareNodeToDelete = ({commit}, node) => {
     commit('prepareNodeToDelete', node);
 };
-export const prepareNodeToCreate = ({commit}, storyId) => {
-    commit('prepareNodeToCreate', storyId);
-};
 export const prepareStoryToDelete = ({commit}, story) => {
     commit('prepareStoryToDelete', story);
 };

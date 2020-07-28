@@ -21,7 +21,6 @@ const state = {
 
     },
     node_prepared_to_delete: null,
-    node_prepared_to_create: null,
     story_prepared_to_delete: null
 };
 

@@ -35,9 +35,6 @@ export default {
     prepareStoryToDelete(state, story) {
         state.story_prepared_to_delete = story;
     },
-    prepareNodeToCreate(state, storyId) {
-      state.node_prepared_to_create = storyId;
-    },
     resetLoader(state) {
         state.fetch_stories_from_api.loading = false;
         state.fetch_stories_from_api.requests_pending = 0;

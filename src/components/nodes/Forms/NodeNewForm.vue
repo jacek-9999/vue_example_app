@@ -53,7 +53,6 @@
                     ></b-form-checkbox-group>
                 </b-form-group>
             </div>
-            {{node_prepared_to_create}}
             <hr>
             <div class="col-12">
                 <div class="d-flex justify-content-between">
@@ -70,7 +69,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 
 export default {
     name: "NodeNewForm",
@@ -96,17 +94,15 @@ export default {
     },
     methods: {
         cancel() {
-            console.log('Toggle button clicked')
-            this.show = !this.show
+            this.$store.dispatch('getAllStories').then(() => {
+                this.$router.go(-1);
+            })
         },
         submit() {
-            console.log('Alert dismissed')
+            console.log(this.$route.params.story_id);
         }
     },
     computed: {
-        ...mapGetters({
-            node_prepared_to_create: 'node_prepared_to_create'
-        }),
         titleState() {
             return this.title.length > 1 ? true : false
         },
