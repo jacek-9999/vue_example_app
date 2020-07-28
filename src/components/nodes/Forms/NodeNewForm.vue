@@ -107,6 +107,34 @@ export default {
         ...mapGetters({
             node_prepared_to_create: 'node_prepared_to_create'
         }),
+        titleState() {
+            return this.title.length > 1 ? true : false
+        },
+        descriptionState() {
+            return this.description.length > 1 ? true : false
+        },
+        invalidTitleFeedback() {
+            if (this.title.length < 1) {
+                return 'Title is empty.'
+            } else {
+                return 'Wrong title data.'
+            }
+        },
+        invalidDescriptionFeedback() {
+            if (this.title.length < 1) {
+                return 'Description is empty.'
+            } else {
+                return 'Wrong description data.'
+            }
+        },
+        validTitleFeedback() {
+            return 'Submit'
+            // return this.state === true ? 'Thank you' : ''
+        },
+        validDescriptionFeedback() {
+            return 'Submit'
+            // return this.state === true ? 'Thank you' : ''
+        }
     }
 }
 </script>
