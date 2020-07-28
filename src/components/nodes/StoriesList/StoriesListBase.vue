@@ -39,7 +39,7 @@ export default {
      },
      deleteStory() {
          this.$store
-             .dispatch('deleteStory', this.$store.state.story_prepared_to_delete.id)
+             .dispatch('deleteStory', this.$store.state.story_prepared_to_delete.story_id)
              .then(() => {
                  this.$store.dispatch('getAllStories').then(() => {
                      this.$refs['delete-story-modal'].hide();
