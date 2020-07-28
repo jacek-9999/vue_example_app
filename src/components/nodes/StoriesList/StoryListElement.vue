@@ -1,13 +1,13 @@
 <template>
     <div @mouseover="hover = true" @mouseleave="hover = false">
-        <b-list-group-item v-on:click="navToStoryNodes(item.story_id)">
+        <b-list-group-item>
             <div class="row">
                 <div class="col-11">{{ item.title }}</div>
-                <div class="col-1">
+                <div class="col-1 edit-delete-story-control">
                     <b-button variant="success">
                         <b-icon v-if="!hover" icon="question-circle"></b-icon>
                         <div v-if="hover" allign-v="end">
-                            <b-button v-on:click.stop="navToEditForm(item.id)" variant="info">
+                            <b-button  v-on:click="navToStoryNodes(item.story_id)" variant="info">
                                 <b-icon icon="pencil"></b-icon>
                             </b-button>
                             <b-button v-on:click.stop="navToDeleteForm(item.id)" variant="danger">
@@ -37,7 +37,7 @@ export default {
             this.$router.push({ name: 'storiesNew' })
         },
         navToStoryNodes: function (story_id) {
-            this.$router.push({ name: 'nodes' , params: {story_id: story_id } })
+            this.$router.push({ name: 'story' , params: {story_id: story_id } })
         }
     },
     data() {
@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.row {
+.edit-delete-story-control {
     cursor: pointer;
 }
 </style>

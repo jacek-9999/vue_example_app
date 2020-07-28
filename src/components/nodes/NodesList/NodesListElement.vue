@@ -3,7 +3,7 @@
         <b-list-group-item>
             <div class="row">
                 <div class="col-11">{{item.title}}</div>
-                <div class="col-1">
+                <div class="col-1 edit-delete-node-control">
                     <b-button variant="success">
                         <b-icon v-if="!hover" icon="question-circle"></b-icon>
                         <div v-if="hover" allign-v="end">
@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.row {
+.edit-delete-node-control {
     cursor: pointer;
 }
 </style>

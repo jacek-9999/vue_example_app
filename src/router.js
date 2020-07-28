@@ -39,17 +39,17 @@ export default new Router({
             component: StoryNewForm
         },
         {
-            path: '/nodes/:story_id',
-            name: 'nodes',
+            path: '/story/:story_id',
+            name: 'story',
             component: StoriesNodesListBase
         },
         {
-            path: '/nodes/edit/:node_id',
+            path: '/story/:story_id/nodes/:node_id/edit',
             name: 'nodesEdit',
             component: NodeEditForm
         },
         {
-            path: '/nodes/delete/:node_id',
+            path: '/story/:story_id/nodes/:node_id/delete',
             name: 'nodesDelete',
             component: NodeDeleteForm
         },
