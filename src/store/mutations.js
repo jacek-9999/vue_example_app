@@ -3,6 +3,9 @@ import {getStory} from "./actions";
 import store from './index'
 
 export default {
+    clearStories(state) {
+        state.stories_list = {};
+    },
     receiveStories(state, stories) {
         stories.forEach(story => {
             Vue.set(state.stories_list, 'story' + story.story_id, story);

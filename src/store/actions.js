@@ -8,6 +8,10 @@ export const getAllStories = ({ commit }) => {
     })
 };
 
+export const clearStories = ({commit}) => {
+    commit('clearStories');
+};
+
 export const getStory = ({ commit }, id) => {
     commit('isLoading', true);
     api.getStory(id, (nodes) => {
