@@ -1,7 +1,16 @@
 <template>
     <div class="StoriesList col-9 mx-auto">
             <b-list-group>
-                <b-list-group-item variant="dark">List of Stories:</b-list-group-item>
+                <b-list-group-item variant="dark">
+                    <div class="d-flex justify-content-between">
+                        <div></div>
+                            List of Stories:
+<!--                        <b-button v-on:click="navToEditForm(item.id)" variant="success">-->
+                        <b-button variant="success">
+                            <b-icon icon="plus-square"></b-icon>
+                        </b-button>
+                    </div>
+                </b-list-group-item>
                 <hr>
                 <div v-if="fetch_stories_from_api.loading" class="text-center">
                     <br/>

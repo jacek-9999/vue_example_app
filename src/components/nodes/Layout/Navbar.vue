@@ -3,7 +3,7 @@
         <b-navbar type="dark" variant="secondary" fixed="top">
             <b-navbar-nav>
                 <b-nav-item v-if="!isBasePath" :to="{path: '/'}">
-                    <b-icon variant="danger" icon="arrow-left-square-fill"></b-icon>
+                    <b-icon variant="danger" font-scale="1.5" icon="arrow-left-square-fill"></b-icon>
                     Stories List
                 </b-nav-item>
             </b-navbar-nav>

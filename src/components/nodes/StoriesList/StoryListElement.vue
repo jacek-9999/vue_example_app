@@ -4,10 +4,10 @@
             <div class="row">
                 <div class="col-11">{{ item.title }}</div>
                 <div class="col-1 edit-delete-story-control">
-                    <b-button variant="success">
+                    <b-button variant="info">
                         <b-icon v-if="!hover" icon="question-circle"></b-icon>
                         <div v-if="hover" allign-v="end">
-                            <b-button  v-on:click="navToStoryNodes(item.story_id)" variant="info">
+                            <b-button  v-on:click="navToStoryNodes(item.story_id)" variant="warning">
                                 <b-icon icon="pencil"></b-icon>
                             </b-button>
                             <b-button v-on:click.stop="navToDeleteForm(item.id)" variant="danger">
