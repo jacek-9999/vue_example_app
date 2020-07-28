@@ -17,7 +17,7 @@
                             <b-button  v-on:click="navToStoryNodes(item.story_id)" variant="warning">
                                 <b-icon icon="pencil"></b-icon>
                             </b-button>
-                            <b-button v-on:click.stop="navToDeleteForm(item.id)" variant="danger">
+                            <b-button v-on:click="prepareStoryToDelete(item)" v-b-modal.delete-story-modal variant="danger">
                                 <b-icon icon="trash"></b-icon>
                             </b-button>
                         </div>
@@ -34,6 +34,9 @@
 export default {
     name: "StoryListElement",
     methods: {
+        prepareStoryToDelete: function(story) {
+            this.$store.dispatch('prepareStoryToDelete', story);
+        },
         navToEditForm: function (id) {
             this.$router.push({ name: 'storiesEdit', params: { node_id: id } })
         },

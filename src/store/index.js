@@ -20,7 +20,8 @@ const state = {
     node: {
 
     },
-    node_prepared_to_delete: null
+    node_prepared_to_delete: null,
+    story_prepared_to_delete: null
 };
 
 export default new Vuex.Store({

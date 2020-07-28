@@ -6,7 +6,7 @@
                     <b-col>
                     <b-badge variant="dark">ID: {{item.id}}</b-badge>
                     <b-badge variant="info">Parent ID: </b-badge>
-                    <b-badge variant="warning">Options IDs: </b-badge>
+                    <b-badge variant="warning">Options: </b-badge>
                     </b-col>
                 </div>
                 <div>{{item.title}}</div>

@@ -36,10 +36,21 @@ export const updateNode = ({commit}, data) => {
 export const prepareNodeToDelete = ({commit}, node) => {
     commit('prepareNodeToDelete', node);
 };
+export const prepareStoryToDelete = ({commit}, story) => {
+    commit('prepareStoryToDelete', story);
+};
 export const deleteNode = ({commit}, id) => {
     commit('isLoading', true);
     return api.deleteNode(id).then((data) => {
             commit('prepareNodeToDelete', null);
+            commit('isLoading', false);
+            return data;
+        });
+};
+export const deleteStory = ({commit}, id) => {
+    commit('isLoading', true);
+    return api.deleteStory(id).then((data) => {
+            commit('prepareStoryToDelete', null);
             commit('isLoading', false);
             return data;
         });

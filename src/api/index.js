@@ -25,6 +25,10 @@ export function deleteNode(id) {
     return axios.delete(endPoint + '/node/' + id);
 }
 
+export function deleteStory(id) {
+    return axios.delete(endPoint + '/story/' + id);
+}
+
 export function getStory(id, callback) {
     axios
         .get(endPoint + '/story/' + id)
