@@ -43,10 +43,30 @@
                 <b-form-checkbox-group
                         id="fieldset-3"
                         v-model="is_final"
-                        :options="options"
+                        :options="checkbox_options"
                         name="is_final_checkbox"
                 ></b-form-checkbox-group>
             </b-form-group>
+            <hr>
+            Options:
+            <b-card-group deck>
+                <b-card v-for="item in options" :key="item.id" :item="item">
+                    <b-card-text>
+                        {{item.title}}
+                    </b-card-text>
+                    <div class="d-flex justify-content-end">
+                        <b-button variant="warning">
+                            unlink option
+                        </b-button>
+                    </div>
+                </b-card>
+                <b-card>
+                       <b-button variant="info">
+                           <b-icon icon="plus"></b-icon>
+                           Create new option
+                        </b-button>
+                </b-card>
+            </b-card-group>
             <hr>
             <div class="col-12">
                 <div class="d-flex justify-content-between">
@@ -58,7 +78,6 @@
                     </b-button>
                 </div>
             </div>
-
         </b-form-group>
     </b-card>
 </template>
@@ -101,6 +120,7 @@ export default {
                this.description = data.data.description;
                this.is_final = [data.data.is_final];
                this.is_initial = data.data.is_initial;
+               this.options = data.data.options;
                return data;
            }).catch(() => {
                this.$store.dispatch('resetLoader').then(() => {
@@ -146,11 +166,12 @@ export default {
         return {
             title: '',
             description: '',
-            is_initial: null,
+            is_initial: false,
             is_final: [],
-            options: [
+            checkbox_options: [
                 {text: 'Final Node', value: 1}
-            ]
+            ],
+            options: []
         }
     }
 }
