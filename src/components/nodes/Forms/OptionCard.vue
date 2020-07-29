@@ -1,7 +1,7 @@
 <template>
     <div>
     <b-card-group deck>
-        <b-card v-for="item in cardData" :key="item.id" :item="item">
+        <b-card v-for="item in cardData" :key="item.id" :item="item" @click="setUnlinkOption(item.id)">
             <b-card-text>
                 {{item.title}}
             </b-card-text>
@@ -30,23 +30,15 @@
                  hide-footer id="unlink-option-modal"
                  title="Unlink Option Confirmation"
          >
-             <div class="d-block text-center">
-                 <h5>
-<!--              <h5 v-if="story_prepared_to_delete">-->
-                      <hr>
-                      Title:
-                      <hr>
-                      Id:
-                      <hr>
-                      <hr>
-                  </h5>
-             </div>
+             <b-card variant="light">
+                Confirm unlink
+            </b-card>
+             <hr>
              <div class="d-flex justify-content-between">
                  <b-button class="" variant="info" @click="hideModal">
                      <b-icon icon="arrow-left"></b-icon>Back
                  </b-button>
-                 <b-button class="" variant="danger">
-    <!--             <b-button class="" variant="danger" @click="deleteStory">-->
+                 <b-button class="" variant="danger" @click="submitUnlink">
                      <b-icon icon="x-circle-fill"></b-icon>
                      Unlink
                  </b-button>
@@ -58,23 +50,50 @@
                  hide-footer id="create-option-modal"
                  title="Create Option"
          >
-             <div class="d-block text-center">
-                 <h5>
-<!--              <h5 v-if="story_prepared_to_delete">-->
-                      <hr>
-                      Title:
-                      <hr>
-                      Id:
-                      <hr>
-                      <hr>
-                  </h5>
+             <b-form-group
+                    id="fieldset-1"
+                    description="Add Title"
+                    label=""
+                    label-for="input-title"
+                    :invalid-feedback="invalidTitleFeedback"
+                    :valid-feedback="validTitleFeedback"
+                    :state="titleState"
+             >
+                 <b-form-input id="input-title" v-model="title" :state="titleState"></b-form-input>
+             </b-form-group>
+             <b-form-group
+                     id="fieldset-2"
+                     description="Add Description"
+                     label=""
+                     label-for="input-description"
+                     :invalid-feedback="invalidDescriptionFeedback"
+                     :valid-feedback="validDescriptionFeedback"
+                     :state="descriptionState"
+             >
+                 <b-form-textarea
+                         id="textarea"
+                         v-model="description"
+                         rows="3"
+                         max-rows="6"
+                 ></b-form-textarea>
+             </b-form-group>
+             <div class="d-flex justify-content-center">
+                 <b-form-group>
+                     <b-form-checkbox-group
+                             id="fieldset-3"
+                             v-model="is_final"
+                             :options="options_final"
+                             name="is_final_checkbox"
+                     ></b-form-checkbox-group>
+                 </b-form-group>
              </div>
+
              <div class="d-flex justify-content-between">
                  <b-button class="" variant="danger" @click="hideModal">
                      <b-icon icon="arrow-left"></b-icon>Back
                  </b-button>
-                 <b-button class="" variant="info">
-    <!--             <b-button class="" variant="danger" @click="deleteStory">-->
+<!--                 <b-button class="" variant="info">-->
+                 <b-button class="" variant="info" @click="submitCreate">
                      <b-icon icon="plus"></b-icon>
                      Create
                  </b-button>
@@ -120,8 +139,21 @@ export default {
     components: {
     },
     methods:{
-        submit() {
-            console.log('xxxxxx');
+        submitUnlink() {
+            console.log(this.unlink_target);
+        },
+        setUnlinkOption(id) {
+            this.unlink_target = id;
+        },
+        submitCreate() {
+            let data = {
+                'title':        this.title,
+                'description':  this.description,
+                'is_final':     this.is_final.length !== 0,
+                'story_id':     this.$route.params.story_id,
+                'node_id':      this.$route.params.node_id
+            };
+            console.log(data);
         },
         submitAssign(targetId) {
             console.log('assign');
@@ -143,7 +175,46 @@ export default {
         ...mapGetters({
             stories: 'stories',
         }),
-    }
+        titleState() {
+            return this.title.length > 1 ? true : false
+        },
+        descriptionState() {
+            return this.description.length > 1 ? true : false
+        },
+        invalidTitleFeedback() {
+            if (this.title.length < 1) {
+                return 'Title is empty.'
+            } else {
+                return 'Wrong title data.'
+            }
+        },
+        invalidDescriptionFeedback() {
+            if (this.title.length < 1) {
+                return 'Description is empty.'
+            } else {
+                return 'Wrong description data.'
+            }
+        },
+        validTitleFeedback() {
+            return 'Submit'
+            // return this.state === true ? 'Thank you' : ''
+        },
+        validDescriptionFeedback() {
+            return 'Submit'
+            // return this.state === true ? 'Thank you' : ''
+        }
+    },
+    data: () => {
+        return {
+            unlink_target: 0,
+            title: '',
+            description: '',
+            is_final: [],
+            options_final: [
+                {text: 'Final Node', value: 1}
+            ]
+        }
+    },
 }
 </script>
 <style>
