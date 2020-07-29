@@ -49,24 +49,7 @@
             </b-form-group>
             <hr>
             Options:
-            <b-card-group deck>
-                <b-card v-for="item in options" :key="item.id" :item="item">
-                    <b-card-text>
-                        {{item.title}}
-                    </b-card-text>
-                    <div class="d-flex justify-content-end">
-                        <b-button variant="warning">
-                            unlink option
-                        </b-button>
-                    </div>
-                </b-card>
-                <b-card>
-                       <b-button variant="info">
-                           <b-icon icon="plus"></b-icon>
-                           Create new option
-                        </b-button>
-                </b-card>
-            </b-card-group>
+            <OptionCard v-bind:cardData="options"></OptionCard>
             <hr>
             <div class="col-12">
                 <div class="d-flex justify-content-between">
@@ -84,9 +67,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import OptionCard from "./OptionCard";
 
 export default {
     name: "NodeEditForm",
+    components: {OptionCard},
     methods: {
         cancel: function () {
             this.$store.dispatch('getAllStories').then(() => {
