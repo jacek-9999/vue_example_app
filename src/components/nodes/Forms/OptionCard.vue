@@ -15,6 +15,11 @@
                    <b-icon icon="plus"></b-icon>
                    Create new option
                 </b-button>
+            <hr>
+              <b-button variant="info">
+                   <b-icon icon="plus"></b-icon>
+                   Assign to other option
+                </b-button>
         </b-card>
     </b-card-group>
 </template>
