@@ -1,7 +1,7 @@
 <template>
     <div class="ListNodes col-9 mx-auto">
         <b-list-group>
-            <b-list-group-item variant="primary">
+            <b-list-group-item variant="info">
                 <div class="d-flex justify-content-between">
                 <div></div>
                     List of Action Nodes:

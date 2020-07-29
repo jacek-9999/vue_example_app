@@ -4,7 +4,7 @@
             <div class="d-flex justify-content-between">
                 <div class="col-2">
                     <b-col>
-                    <b-badge variant="dark">ID: {{item.story_id}}</b-badge>
+                    <b-badge variant="info">ID: {{item.story_id}}</b-badge>
 <!--                    <b-badge variant="info">Parent ID: </b-badge>-->
 <!--                    <b-badge variant="warning">Nodes Number: </b-badge>-->
                     </b-col>

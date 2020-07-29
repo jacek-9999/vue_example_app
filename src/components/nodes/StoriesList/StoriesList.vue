@@ -1,7 +1,7 @@
 <template>
     <div class="StoriesList col-9 mx-auto">
             <b-list-group>
-                <b-list-group-item variant="dark">
+                <b-list-group-item variant="secondary">
                     <div class="d-flex justify-content-between">
                         <div></div>
                             List of Stories:

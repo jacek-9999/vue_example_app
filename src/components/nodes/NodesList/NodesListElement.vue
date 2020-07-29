@@ -4,9 +4,11 @@
             <div class="d-flex justify-content-between">
                 <div class="col-2">
                     <b-col>
-                    <b-badge variant="dark">ID: {{item.id}}</b-badge>
-                    <b-badge variant="info">Parent ID: </b-badge>
-                    <b-badge variant="warning">Options: </b-badge>
+                        <b-badge v-if="item.is_initial" variant="danger">ID: {{item.id}}(initial)</b-badge>
+                        <b-badge v-else-if="item.is_final" variant="warning">ID: {{item.id}}(final)</b-badge>
+                        <b-badge v-else variant="info">ID: {{item.id}}</b-badge>
+                        <b-badge variant="info">Parent ID: </b-badge>
+                        <b-badge v-if="!item.is_final" variant="info">Options: </b-badge>
                     </b-col>
                 </div>
                 <div>{{item.title}}</div>
