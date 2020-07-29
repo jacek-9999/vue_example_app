@@ -4,8 +4,10 @@
             <b-card-text>
                 {{item.title}}
             </b-card-text>
-            <div class="d-flex justify-content-end">
+            <hr>
+            <div class="d-flex justify-content-center">
                 <b-button variant="warning">
+                    <b-icon icon="x-circle-fill"></b-icon>
                     unlink option
                 </b-button>
             </div>
@@ -17,7 +19,7 @@
                 </b-button>
             <hr>
               <b-button variant="info">
-                   <b-icon icon="plus"></b-icon>
+                   <b-icon icon="link"></b-icon>
                    Assign to other option
                 </b-button>
         </b-card>
