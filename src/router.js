@@ -57,6 +57,11 @@ export default new Router({
             path: '/story/:story_id/nodes/new',
             name: 'nodesNew',
             component: NodeNewForm
+        },
+        {
+            path: '/story/new',
+            name: 'storyNew',
+            component: NodeNewForm
         }
     ]
 })

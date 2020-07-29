@@ -99,9 +99,9 @@ export default {
             let data = {
                 'title':        this.title,
                 'description':  this.description,
-                'is_initial':     this.is_initial.length !== 0,
+                'is_initial':   this.is_initial.length !== 0,
                 'is_final':     this.is_final.length !== 0,
-                'story_id':     this.$route.params.story_id
+                'story_id':     (this.$route.name === 'storyNew') ? 'new' : this.$route.params.story_id
             };
             this.$store.dispatch('createNode', data)
                 .then(() => {

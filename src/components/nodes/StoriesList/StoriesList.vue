@@ -6,7 +6,8 @@
                         <div></div>
                             List of Stories:
 <!--                        <b-button v-on:click="navToEditForm(item.id)" variant="success">-->
-                        <b-button variant="success">
+                        <b-button v-on:click="navToNewNodeForm" variant="success">
+<!--                        <b-button variant="success">-->
                             <b-icon icon="plus-square"></b-icon>
                         </b-button>
                     </div>
@@ -31,7 +32,11 @@ import StoryListElement from "./StoryListElement";
 export default {
     name: "StoriesList",
     components: {StoryListElement},
-    methods: {},
+    methods: {
+        navToNewNodeForm: function () {
+            this.$router.push({ name: 'storyNew' })
+        }
+    },
     computed: mapGetters({
         stories_list: 'stories_list',
         stories: 'stories',
