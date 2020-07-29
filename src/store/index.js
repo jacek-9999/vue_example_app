@@ -8,9 +8,7 @@ import * as getters from './getters'
 Vue.use(Vuex);
 
 const state = {
-    stories: {
-
-    },
+    stories: [],
     stories_list: {
     },
     fetch_stories_from_api: {

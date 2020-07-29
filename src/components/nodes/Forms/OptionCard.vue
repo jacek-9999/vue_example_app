@@ -87,24 +87,21 @@
                  title="Assign Option"
          >
              <div class="d-block text-center">
-                 <h5>
-<!--              <h5 v-if="story_prepared_to_delete">-->
-                      <hr>
-                      Title:
-                      <hr>
-                      Id:
-                      <hr>
-                      <hr>
-                  </h5>
+                <b-list-group>
+                <div v-for="item in stories[getStoryId()]" :key="item.id" :item="item">
+                    <b-card bg-variant="light" :title="item.title" v-if="item.id!=getNodeId()">
+                        <b-badge v-if="item.is_initial" variant="danger">ID: {{item.id}}(initial)</b-badge>
+                        <b-badge v-else-if="item.is_final" variant="warning">ID: {{item.id}}(final)</b-badge>
+                        <b-badge v-else variant="info">ID: {{item.id}}</b-badge>
+                        <hr><b-button variant="warning"  @click="submitAssign(item.id)">Assign</b-button>
+                    </b-card>
+                    <hr>
+                </div>
+                </b-list-group>
              </div>
              <div class="d-flex justify-content-between">
                  <b-button class="" variant="danger" @click="hideModal">
                      <b-icon icon="arrow-left"></b-icon>Back
-                 </b-button>
-                 <b-button class="" variant="info">
-    <!--             <b-button class="" variant="danger" @click="deleteStory">-->
-                     <b-icon icon="link"></b-icon>
-                     Assign
                  </b-button>
              </div>
          </b-modal>
@@ -113,6 +110,8 @@
     </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     name: 'OptionCard',
     props: {
@@ -121,11 +120,29 @@ export default {
     components: {
     },
     methods:{
+        submit() {
+            console.log('xxxxxx');
+        },
+        submitAssign(targetId) {
+            console.log('assign');
+            console.log(targetId);
+        },
         hideModal() {
             this.$refs['unlink-option-modal'].hide()
+            this.$refs['create-option-modal'].hide()
+            this.$refs['assign-option-modal'].hide()
+        },
+        getStoryId() {
+            return this.$route.params.story_id;
+        },
+        getNodeId() {
+            return this.$route.params.node_id;
         },
     },
     computed: {
+        ...mapGetters({
+            stories: 'stories',
+        }),
     }
 }
 </script>
