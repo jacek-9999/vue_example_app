@@ -39,7 +39,7 @@
                         max-rows="6"
                 ></b-form-textarea>
             </b-form-group>
-            <b-form-group>
+            <b-form-group v-if="!is_initial">
                 <b-form-checkbox-group
                         id="fieldset-3"
                         v-model="is_final"
@@ -100,6 +100,7 @@ export default {
                this.title = data.data.title;
                this.description = data.data.description;
                this.is_final = [data.data.is_final];
+               this.is_initial = data.data.is_initial;
                return data;
            }).catch(() => {
                this.$store.dispatch('resetLoader').then(() => {
@@ -145,6 +146,7 @@ export default {
         return {
             title: '',
             description: '',
+            is_initial: null,
             is_final: [],
             options: [
                 {text: 'Final Node', value: 1}

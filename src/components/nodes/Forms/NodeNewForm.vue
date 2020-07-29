@@ -35,7 +35,7 @@
                         max-rows="6"
                 ></b-form-textarea>
             </b-form-group>
-            <div class="d-flex">
+            <div v-if="!newStory" class="d-flex">
                 <b-form-group>
                     <b-form-checkbox-group
                             id="fieldset-3"
@@ -103,6 +103,9 @@ export default {
         }
     },
     computed: {
+        newStory() {
+            return this.$route.name === 'storyNew';
+        },
         titleState() {
             return this.title.length > 1 ? true : false
         },
