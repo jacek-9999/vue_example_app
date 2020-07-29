@@ -3,11 +3,12 @@
         <b-list-group-item>
             <div class="d-flex justify-content-between">
                 <div class="col-2">
-                    <b-col>
-                    <b-badge variant="info">ID: {{item.story_id}}</b-badge>
-<!--                    <b-badge variant="info">Parent ID: </b-badge>-->
-<!--                    <b-badge variant="warning">Nodes Number: </b-badge>-->
-                    </b-col>
+                    <b-row>
+                        <b-badge variant="info">ID: {{item.story_id}}</b-badge>
+                    </b-row>
+                    <b-row>
+                        <b-badge variant="info">Nodes: {{item.story_count}}</b-badge>
+                    </b-row>
                 </div>
                 <div>{{ item.title }}</div>
                 <div class="edit-delete-story-control">

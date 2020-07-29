@@ -3,13 +3,17 @@
         <b-list-group-item>
             <div class="d-flex justify-content-between">
                 <div class="col-2">
-                    <b-col>
+                    <b-row>
                         <b-badge v-if="item.is_initial" variant="danger">ID: {{item.id}}(initial)</b-badge>
                         <b-badge v-else-if="item.is_final" variant="warning">ID: {{item.id}}(final)</b-badge>
                         <b-badge v-else variant="info">ID: {{item.id}}</b-badge>
+                    </b-row>
+                    <b-row>
                         <b-badge variant="info">Parent ID: </b-badge>
-                        <b-badge v-if="!item.is_final" variant="info">Options: </b-badge>
-                    </b-col>
+                    </b-row>
+                    <b-row v-if="!item.is_final">
+                        <b-badge variant="info">Options: </b-badge>
+                    </b-row>
                 </div>
                 <div>{{item.title}}</div>
                 <div class="edit-delete-node-control">
