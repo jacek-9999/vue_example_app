@@ -32,10 +32,7 @@ export default {
     components: {NodesListElement},
     methods: {
         navToNewNodeForm: function () {
-            this.$store.dispatch('prepareNodeToCreate', this.getStoryId())
-                .then(() => {
-                    this.$router.push({ name: 'nodesNew' })
-                });
+            this.$router.push({ name: 'nodesNew' })
         },
         getStoryId() {
             return this.$route.params.story_id;

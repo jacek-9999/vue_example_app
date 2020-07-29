@@ -83,9 +83,6 @@ export default {
             };
             this.$store.dispatch('updateNode', data)
                 .then(() => {
-                    // this.title = data.data.title;
-                    // this.description = data.data.description;
-                    // this.is_final = [data.data.is_final];
                     this.$store.dispatch('resetLoader').then(() => {
                         this.$store.dispatch('getAllStories').then(() => {
                             this.$router.go(-1);

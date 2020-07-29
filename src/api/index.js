@@ -20,7 +20,9 @@ export function getNode(id) {
 export function updateNode(data) {
     return axios.patch(endPoint + '/node/' + data.id, data);
 }
-
+export function createNode(data) {
+    return axios.put(endPoint + '/node', data);
+}
 export function deleteNode(id) {
     return axios.delete(endPoint + '/node/' + id);
 }

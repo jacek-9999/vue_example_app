@@ -88,9 +88,6 @@ export default {
         }
     },
     watch: {
-        show(newVal) {
-            console.log('Alert is now ' + (newVal ? 'visible' : 'hidden'))
-        }
     },
     methods: {
         cancel() {
@@ -99,7 +96,23 @@ export default {
             })
         },
         submit() {
-            console.log(this.$route.params.story_id);
+            let data = {
+                'title':        this.title,
+                'description':  this.description,
+                'is_initial':     this.is_initial.length !== 0,
+                'is_final':     this.is_final.length !== 0,
+                'story_id':     this.$route.params.story_id
+            };
+            this.$store.dispatch('createNode', data)
+                .then(() => {
+                    this.$store.dispatch('resetLoader').then(() => {
+                        this.$store.dispatch('getAllStories').then(() => {
+                            this.$router.go(-1);
+                        });
+                    });
+                }).catch((err) => {
+                    console.log(err);
+                });
         }
     },
     computed: {
