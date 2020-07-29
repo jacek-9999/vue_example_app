@@ -23,7 +23,7 @@
                             <b-button v-on:click="navToEditForm(item.id)" variant="warning">
                                 <b-icon icon="pencil"></b-icon>
                             </b-button>
-                            <b-button v-on:click="prepareDelete(item)" v-b-modal.delete-node-modal variant="danger">
+                            <b-button v-if="!item.is_initial" v-on:click="prepareDelete(item)" v-b-modal.delete-node-modal variant="danger">
                                 <b-icon icon="trash"></b-icon>
                             </b-button>
                         </div>

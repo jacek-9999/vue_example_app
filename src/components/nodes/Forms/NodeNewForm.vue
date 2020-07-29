@@ -39,14 +39,6 @@
                 <b-form-group>
                     <b-form-checkbox-group
                             id="fieldset-3"
-                            v-model="is_initial"
-                            :options="options_initial"
-                            name="is_final_checkbox"
-                    ></b-form-checkbox-group>
-                </b-form-group>
-                <b-form-group>
-                    <b-form-checkbox-group
-                            id="fieldset-3"
                             v-model="is_final"
                             :options="options_final"
                             name="is_final_checkbox"
@@ -77,10 +69,6 @@ export default {
             story_id: null,
             title: '',
             description: '',
-            is_initial: [],
-            options_initial: [
-                {text: 'Initial Node', value: 1}
-            ],
             is_final: [],
             options_final: [
                 {text: 'Final Node', value: 1}
@@ -99,7 +87,6 @@ export default {
             let data = {
                 'title':        this.title,
                 'description':  this.description,
-                'is_initial':   this.is_initial.length !== 0,
                 'is_final':     this.is_final.length !== 0,
                 'story_id':     (this.$route.name === 'storyNew') ? 'new' : this.$route.params.story_id
             };
