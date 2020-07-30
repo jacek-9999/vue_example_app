@@ -5,7 +5,7 @@
                 <div>{{ item.title }}</div>
                 <div class="edit-delete-story-control">
                     <b-button variant="warning">
-                            <b-button  v-on:click="play(item.story_id)" variant="success">
+                            <b-button  v-on:click="play(item)" variant="success">
                                 <b-icon icon="play"></b-icon>
                             </b-button>
                     </b-button>
@@ -21,8 +21,11 @@
 export default {
     name: "GameListElement",
     methods: {
-        play: function(story) {
-            return story;
+        play: function(item) {
+            this.$store.dispatch('setCurrentGame', item)
+                .then(() => {
+                    this.$router.push({ name: 'game', params: { story_id: item.id } })
+                });
         },
     },
     data() {
