@@ -76,6 +76,13 @@ export const deleteStory = ({commit}, id) => {
             return data;
         });
 };
+export const unlinkNode = ({commit}, data) => {
+    commit('isLoading', true);
+    return api.unlinkNode(data).then((data) => {
+            commit('isLoading', false);
+            return data;
+        });
+};
 export const resetLoader = ({commit}) => {
     commit('resetLoader');
 };

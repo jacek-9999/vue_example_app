@@ -140,7 +140,22 @@ export default {
     },
     methods:{
         submitUnlink() {
-            console.log(this.unlink_target, this.$route.params.node_id);
+            let data = {
+                'base_id': this.$route.params.node_id,
+                'target_id': this.unlink_target
+            };
+            this.$store.dispatch('unlinkNode', data)
+               .then(() => {
+                    this.$store.dispatch('resetLoader').then(() => {
+                        this.$store.dispatch('getAllStories').then(() => {
+                            this.$router.go();
+                        });
+                    });
+                }).catch((err) => {
+                    // this.$router.push({ path: 'stories' });
+                    console.log(err);
+                });
+            this.hideModal();
         },
         setUnlinkOption(id) {
             this.unlink_target = id;
@@ -162,7 +177,7 @@ export default {
                         this.$store.dispatch('createOption', optionData).then(() => {
                                 this.$store.dispatch('resetLoader').then(() => {
                                     this.$store.dispatch('getAllStories').then(() => {
-                                        // this.$router.go();
+                                        this.$router.go();
                                     });});});
                 }).catch((err) => {
                     console.log(err);
@@ -177,7 +192,7 @@ export default {
                 .then(() => {
                     this.$store.dispatch('resetLoader').then(() => {
                         this.$store.dispatch('getAllStories').then(() => {
-                            // this.$router.go();
+                            this.$router.go();
                         });
                     });
                 }).catch((err) => {
