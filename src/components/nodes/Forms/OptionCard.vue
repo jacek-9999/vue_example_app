@@ -108,13 +108,16 @@
              <div class="d-block text-center">
                 <b-list-group>
                 <div v-for="item in stories[getStoryId()]" :key="item.id" :item="item">
-                    <b-card bg-variant="light" :title="item.title" v-if="item.id!=getNodeId()">
+                    <b-card
+                            bg-variant="light"
+                            :title="item.title"
+                            v-if="validateAssignElements(cardData, item)">
                         <b-badge v-if="item.is_initial" variant="danger">ID: {{item.id}}(initial)</b-badge>
                         <b-badge v-else-if="item.is_final" variant="warning">ID: {{item.id}}(final)</b-badge>
                         <b-badge v-else variant="info">ID: {{item.id}}</b-badge>
                         <hr><b-button variant="warning"  @click="submitAssign(item.id)">Assign</b-button>
                     </b-card>
-                    <hr>
+                    <hr v-if="validateAssignElements(cardData, item)">
                 </div>
                 </b-list-group>
              </div>
@@ -140,7 +143,7 @@ export default {
     },
     methods:{
         submitUnlink() {
-            console.log(this.unlink_target);
+            console.log(this.unlink_target, this.$route.params.node_id);
         },
         setUnlinkOption(id) {
             this.unlink_target = id;
@@ -156,13 +159,33 @@ export default {
             console.log(data);
         },
         submitAssign(targetId) {
-            console.log('assign');
-            console.log(targetId);
+            console.log(targetId, this.$route.params.node_id);
+            let data = {
+                'target_id': targetId,
+               'base_id': this.$route.params.node_id
+            };
+            this.$store.dispatch('createOption', data)
+                .then(() => {
+                    this.$store.dispatch('resetLoader').then(() => {
+                        this.$store.dispatch('getAllStories').then(() => {
+                            //router.push({ name: 'user', params: { userId: '123' } })
+                            this.$router.go();
+                            // this.$router.push({
+                            //     name: 'nodesEdit',
+                            //     params: {storyId: this.$route.params.story_id, nodeId: this.$route.params.node_id}
+                            // });
+                        });
+                    });
+                }).catch((err) => {
+                    // this.$router.push({ path: 'stories' });
+                    console.log(err);
+                });
+            this.hideModal();
         },
         hideModal() {
-            this.$refs['unlink-option-modal'].hide()
-            this.$refs['create-option-modal'].hide()
-            this.$refs['assign-option-modal'].hide()
+            this.$refs['unlink-option-modal'].hide();
+            this.$refs['create-option-modal'].hide();
+            this.$refs['assign-option-modal'].hide();
         },
         getStoryId() {
             return this.$route.params.story_id;
@@ -170,6 +193,15 @@ export default {
         getNodeId() {
             return this.$route.params.node_id;
         },
+        validateAssignElements(cardData,item) {
+            let ok = true;
+            cardData.forEach((el) => {
+                if (el.id === item.id) {
+                    ok = false;
+                }
+            });
+            return ok;
+        }
     },
     computed: {
         ...mapGetters({

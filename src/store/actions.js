@@ -45,6 +45,14 @@ export const createNode = ({commit}, data) => {
             return data;
         });
 };
+export const createOption = ({commit}, data) => {
+    commit('isLoading', true);
+    return api.createOption(data)
+        .then((data) => {
+            commit('isLoading', false);
+            return data;
+        });
+};
 export const prepareNodeToDelete = ({commit}, node) => {
     commit('prepareNodeToDelete', node);
 };

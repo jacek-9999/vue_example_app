@@ -23,6 +23,9 @@ export function updateNode(data) {
 export function createNode(data) {
     return axios.put(endPoint + '/node', data);
 }
+export function createOption(data) {
+    return axios.put(endPoint + '/option', data);
+}
 export function deleteNode(id) {
     return axios.delete(endPoint + '/node/' + id);
 }
