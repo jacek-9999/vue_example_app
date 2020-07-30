@@ -1,6 +1,6 @@
 <template>
     <div>
-    <b-card-group deck>
+    <b-card-group columns>
         <b-card v-for="item in cardData" :key="item.id" :item="item" @click="setUnlinkOption(item.id)">
             <b-card-text>
                 {{item.title}}
