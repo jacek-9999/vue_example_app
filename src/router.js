@@ -22,7 +22,7 @@ export default new Router({
             component: GamesListBase
         },
         {
-            path: '/game/story_id',
+            path: '/game/:story_id',
             name: 'game',
             component: Game
         },

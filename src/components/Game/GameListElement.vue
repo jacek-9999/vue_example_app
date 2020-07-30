@@ -22,10 +22,7 @@ export default {
     name: "GameListElement",
     methods: {
         play: function(item) {
-            this.$store.dispatch('setCurrentGame', item)
-                .then(() => {
-                    this.$router.push({ name: 'game', params: { story_id: item.id } })
-                });
+            this.$router.push({ name: 'game', params: { story_id: item.id } })
         },
     },
     data() {

@@ -21,9 +21,6 @@ export default {
     setCurrentNode(state, node) {
         Vue.set(state.currentNode, 'current', node);
     },
-    setCurrentGame(state, node) {
-        Vue.set(state.currentGame, 'current', node);
-    },
     isLoading(state, isLoading) {
         if (isLoading) {
             state.fetch_stories_from_api.requests_pending++;

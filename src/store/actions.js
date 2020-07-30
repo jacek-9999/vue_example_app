@@ -86,6 +86,3 @@ export const unlinkNode = ({commit}, data) => {
 export const resetLoader = ({commit}) => {
     commit('resetLoader');
 };
-export const setCurrentGame = ({commit}, node) => {
-    commit('setCurrentGame', node);
-};
