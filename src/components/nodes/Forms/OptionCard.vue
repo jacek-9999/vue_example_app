@@ -1,7 +1,7 @@
 <template>
     <div>
     <b-card-group columns>
-        <b-card v-for="item in cardData" :key="item.id" :item="item" @click="setUnlinkOption(item.id)">
+        <b-card v-for="item in currentNode.current.options" :key="item.id" :item="item" @click="setUnlinkOption(item.id)">
             <b-card-text>
                 {{item.title}}
             </b-card-text>
@@ -111,13 +111,13 @@
                     <b-card
                             bg-variant="light"
                             :title="item.title"
-                            v-if="validateAssignElements(cardData, item)">
+                            v-if="validateAssignElements(currentNode, item)">
                         <b-badge v-if="item.is_initial" variant="danger">ID: {{item.id}}(initial)</b-badge>
                         <b-badge v-else-if="item.is_final" variant="warning">ID: {{item.id}}(final)</b-badge>
                         <b-badge v-else variant="info">ID: {{item.id}}</b-badge>
                         <hr><b-button variant="warning"  @click="submitAssign(item.id)">Assign</b-button>
                     </b-card>
-                    <hr v-if="validateAssignElements(cardData, item)">
+                    <hr v-if="validateAssignElements(currentNode, item)">
                 </div>
                 </b-list-group>
              </div>
@@ -136,9 +136,6 @@ import { mapGetters } from 'vuex'
 
 export default {
     name: 'OptionCard',
-    props: {
-        cardData: Array
-    },
     components: {
     },
     methods:{
@@ -156,10 +153,22 @@ export default {
                 'story_id':     this.$route.params.story_id,
                 'node_id':      this.$route.params.node_id
             };
-            console.log(data);
+            this.$store.dispatch('createNode', data)
+                .then((responseData) => {
+                        let optionData = {
+                            'target_id': responseData.data.id,
+                            'base_id': this.$route.params.node_id
+                        };
+                        this.$store.dispatch('createOption', optionData).then(() => {
+                                this.$store.dispatch('resetLoader').then(() => {
+                                    this.$store.dispatch('getAllStories').then(() => {
+                                        // this.$router.go();
+                                    });});});
+                }).catch((err) => {
+                    console.log(err);
+                });
         },
         submitAssign(targetId) {
-            console.log(targetId, this.$route.params.node_id);
             let data = {
                 'target_id': targetId,
                'base_id': this.$route.params.node_id
@@ -168,12 +177,7 @@ export default {
                 .then(() => {
                     this.$store.dispatch('resetLoader').then(() => {
                         this.$store.dispatch('getAllStories').then(() => {
-                            //router.push({ name: 'user', params: { userId: '123' } })
-                            this.$router.go();
-                            // this.$router.push({
-                            //     name: 'nodesEdit',
-                            //     params: {storyId: this.$route.params.story_id, nodeId: this.$route.params.node_id}
-                            // });
+                            // this.$router.go();
                         });
                     });
                 }).catch((err) => {
@@ -193,19 +197,22 @@ export default {
         getNodeId() {
             return this.$route.params.node_id;
         },
-        validateAssignElements(cardData,item) {
+        validateAssignElements(list,item) {
             let ok = true;
-            cardData.forEach((el) => {
-                if (el.id === item.id) {
-                    ok = false;
-                }
-            });
+            if (typeof list.current.options !== 'undefined') {
+                list.current.options.forEach((el) => {
+                    if (el.id === item.id) {
+                        ok = false;
+                    }
+                });
+            }
             return ok;
         }
     },
     computed: {
         ...mapGetters({
             stories: 'stories',
+            currentNode: 'currentNode'
         }),
         titleState() {
             return this.title.length > 1 ? true : false

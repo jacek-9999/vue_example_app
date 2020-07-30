@@ -49,7 +49,7 @@
             </b-form-group>
             <hr>
             Options:
-            <OptionCard v-bind:cardData="options"></OptionCard>
+            <OptionCard></OptionCard>
             <hr>
             <div class="col-12">
                 <div class="d-flex justify-content-between">

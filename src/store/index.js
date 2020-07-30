@@ -18,6 +18,7 @@ const state = {
     node: {
 
     },
+    currentNode: {},
     node_prepared_to_delete: null,
     story_prepared_to_delete: null
 };

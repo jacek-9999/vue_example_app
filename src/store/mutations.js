@@ -18,6 +18,9 @@ export default {
     receiveNode(state, node) {
         Vue.set(state.node, node.id, node);
     },
+    setCurrentNode(state, node) {
+        Vue.set(state.currentNode, 'current', node);
+    },
     isLoading(state, isLoading) {
         if (isLoading) {
             state.fetch_stories_from_api.requests_pending++;
