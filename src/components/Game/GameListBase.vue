@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex/types';
+import {mapGetters} from 'vuex';
 import GameList from "./GameList";
 
 export default {

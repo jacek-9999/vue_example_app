@@ -9,8 +9,8 @@
             </b-navbar-nav>
             <b-navbar-nav>
                 <b-nav-item v-if="!isPath('games')" :to="{path: '/games'}">
-                    <b-icon variant="danger" font-scale="1.5" icon="arrow-left-square-fill"></b-icon>
-                    Stories List
+                    <b-icon variant="warning" font-scale="1.5" icon="trophy"></b-icon>
+                    Games
                 </b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav class="ml-auto">
@@ -27,12 +27,12 @@ export default {
     methods:{
       logout: function () {
           alert('not work in demo version');
+      },
+      isPath: function(path) {
+          return this.$route.name === path
       }
     },
     computed: {
-        isPath() {
-            return this.$route.name === 'stories'
-        }
     }
 }
 </script>

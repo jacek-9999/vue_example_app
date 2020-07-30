@@ -4,12 +4,10 @@
             <div class="d-flex justify-content-between">
                 <div>{{ item.title }}</div>
                 <div class="edit-delete-story-control">
-                    <b-button variant="info">
-                        <div v-if="hover" allign-v="end">
-                            <b-button  v-on:click="play(item.story_id)" variant="warning">
-                                <b-icon icon="pencil"></b-icon>
+                    <b-button variant="warning">
+                            <b-button  v-on:click="play(item.story_id)" variant="success">
+                                <b-icon icon="play"></b-icon>
                             </b-button>
-                        </div>
                     </b-button>
                 </div>
             </div>

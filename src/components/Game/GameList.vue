@@ -6,6 +6,8 @@
                     <b-spinner variant="primary" label="Spinning"></b-spinner>
                 </div>
                 <div v-else>
+                    Select story
+                    <hr>
                     <game-list-element v-for="item in stories_list" :key="item.story_id" :item="item">
                     </game-list-element>
                 </div>
@@ -15,7 +17,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex/types'
+import { mapGetters } from 'vuex'
 import GameListElement from "./GameListElement";
 
 export default {
