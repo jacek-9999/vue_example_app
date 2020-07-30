@@ -8,7 +8,7 @@
 <script>
 // import StoriesListBase from "./components/StoriesListBase";
 
-import Navbar from "./components/nodes/Layout/Navbar";
+import Navbar from "./components/Layout/Navbar";
 export default {
   name: 'App',
   components: {

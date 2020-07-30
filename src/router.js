@@ -4,6 +4,7 @@ import StoriesListBase from './components/nodes/StoriesList/StoriesListBase'
 import StoriesNodesListBase from './components/nodes/NodesList/StoryNodesListBase'
 import NodeEditForm from "./components/nodes/Forms/NodeEditForm";
 import NodeNewForm from "./components/nodes/Forms/NodeNewForm";
+import GamesListBase from "./components/Game/GameListBase";
 
 Vue.use(Router);
 
@@ -14,6 +15,11 @@ export default new Router({
         return { x: 0, y: 0 };
     },
     routes: [
+        {
+            path: '/games',
+            name: 'games',
+            component: GamesListBase
+        },
         {
             path: '/',
             name: 'stories',

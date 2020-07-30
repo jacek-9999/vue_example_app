@@ -2,7 +2,13 @@
     <div>
         <b-navbar type="dark" variant="secondary" fixed="top">
             <b-navbar-nav>
-                <b-nav-item v-if="!isBasePath" :to="{path: '/'}">
+                <b-nav-item v-if="!isPath('stories')" :to="{path: '/'}">
+                    <b-icon variant="danger" font-scale="1.5" icon="arrow-left-square-fill"></b-icon>
+                    Stories List
+                </b-nav-item>
+            </b-navbar-nav>
+            <b-navbar-nav>
+                <b-nav-item v-if="!isPath('games')" :to="{path: '/games'}">
                     <b-icon variant="danger" font-scale="1.5" icon="arrow-left-square-fill"></b-icon>
                     Stories List
                 </b-nav-item>
@@ -24,7 +30,7 @@ export default {
       }
     },
     computed: {
-        isBasePath() {
+        isPath() {
             return this.$route.name === 'stories'
         }
     }
