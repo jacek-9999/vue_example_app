@@ -8,9 +8,6 @@
                         <b-badge v-else-if="item.is_final" variant="warning">ID: {{item.id}}(final)</b-badge>
                         <b-badge v-else variant="info">ID: {{item.id}}</b-badge>
                     </b-row>
-                    <b-row v-if="!item.is_final">
-                        <b-badge variant="info">Options: </b-badge>
-                    </b-row>
                 </div>
                 <div>{{item.title}}</div>
                 <div class="edit-delete-node-control">
