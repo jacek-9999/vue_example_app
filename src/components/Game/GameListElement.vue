@@ -7,7 +7,7 @@
                     <b-button variant="dark">
 
                             <b-button  v-on:click="play(item)" variant="success">
-                                <b-icon icon="diamond-half"></b-icon>
+                                <b-icon animation="fade" icon="question" font-scale="1.5"></b-icon>
                             </b-button>
                     </b-button>
                 </div>
