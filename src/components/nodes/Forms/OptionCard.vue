@@ -80,10 +80,10 @@
              <div class="d-flex justify-content-center">
                  <b-form-group>
                      <b-form-checkbox-group
-                             id="fieldset-3"
-                             v-model="is_final"
-                             :options="options_final"
-                             name="is_final_checkbox"
+                             id="new_node_option_is_final_fieldset-3"
+                             v-model="new_node_is_final"
+                             :options="new_node_options_final"
+                             name="new_node_options_is_final_checkbox"
                      ></b-form-checkbox-group>
                  </b-form-group>
              </div>
@@ -164,7 +164,7 @@ export default {
             let data = {
                 'title':        this.title,
                 'description':  this.description,
-                'is_final':     this.is_final.length !== 0,
+                'is_final':     this.new_node_is_final.length !== 0,
                 'story_id':     this.$route.params.story_id,
                 'node_id':      this.$route.params.node_id
             };
@@ -263,7 +263,10 @@ export default {
             unlink_target: 0,
             title: '',
             description: '',
-            is_final: [],
+            new_node_is_final: [],
+            new_node_options_final: [
+                {text: 'Final Node', value: 1}
+            ],
             options_final: [
                 {text: 'Final Node', value: 1}
             ]
