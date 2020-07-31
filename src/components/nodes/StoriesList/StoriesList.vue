@@ -5,9 +5,7 @@
                     <div class="d-flex justify-content-between">
                         <div></div>
                             List of Stories:
-<!--                        <b-button v-on:click="navToEditForm(item.id)" variant="success">-->
                         <b-button v-on:click="navToNewNodeForm" variant="success">
-<!--                        <b-button variant="success">-->
                             <b-icon icon="plus-square"></b-icon>
                         </b-button>
                     </div>

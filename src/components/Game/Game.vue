@@ -7,7 +7,7 @@
         <div v-else>
             <b-card-group>
                 <b-card :bg-variant=getBgVariant(currentNode) :text-variant=getTextVariant(currentNode)>
-                    <h3>{{currentNode.title}}</h3>
+<!--                    <h3>{{currentNode.title}}</h3>-->
                     <h4>{{currentNode.description}}</h4>
                 </b-card>
             </b-card-group>
