@@ -4,13 +4,13 @@
             <b-navbar-nav>
                 <b-nav-item v-if="!isPath('stories')" :to="{path: '/'}">
                     <b-icon variant="danger" font-scale="1.5" icon="arrow-left-square-fill"></b-icon>
-                    Stories List
+                    Stories Edition List
                 </b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav>
                 <b-nav-item v-if="!isPath('games')" :to="{path: '/games'}">
                     <b-icon variant="warning" font-scale="1.5" icon="trophy"></b-icon>
-                    Games
+                    Playable Stories
                 </b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav class="ml-auto">

@@ -3,10 +3,11 @@
         <b-list-group-item>
             <div class="d-flex justify-content-between">
                 <div>{{ item.title }}</div>
-                <div class="edit-delete-story-control">
-                    <b-button variant="warning">
+                <div class="choose-game-control">
+                    <b-button variant="dark">
+
                             <b-button  v-on:click="play(item)" variant="success">
-                                <b-icon icon="play"></b-icon>
+                                <b-icon icon="diamond-half"></b-icon>
                             </b-button>
                     </b-button>
                 </div>
@@ -37,7 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.edit-delete-story-control {
+.choose-game-control {
     cursor: pointer;
 }
 </style>
