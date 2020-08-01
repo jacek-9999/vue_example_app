@@ -111,17 +111,17 @@
          >
              <div class="d-block text-center">
                 <b-list-group>
-                <div v-for="item in currentNode.nodes" :key="item.id" :item="item">
+                <div v-for="item in stories_list[getStoryId()].nodes" :key="item.id" :item="item">
                     <b-card
                             bg-variant="light"
                             :title="item.title"
-                            v-if="validateAssignElements(currentNode, item)">
+                            v-if="validateAssignElements(stories_list[getStoryId()].nodes[getNodeId()], item)">
                         <b-badge v-if="item.is_initial" variant="danger">ID: {{item.id}}(initial)</b-badge>
                         <b-badge v-else-if="item.is_final" variant="warning">ID: {{item.id}}(final)</b-badge>
                         <b-badge v-else variant="info">ID: {{item.id}}</b-badge>
                         <hr><b-button variant="warning"  @click="submitAssign(item.id)">Assign</b-button>
                     </b-card>
-                    <hr v-if="validateAssignElements(currentNode, item)">
+                    <hr v-if="validateAssignElements(stories_list[getStoryId()].nodes[getNodeId()], item)">
                 </div>
                 </b-list-group>
              </div>
@@ -137,6 +137,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import Vue from 'vue'
 
 export default {
     name: 'OptionCard',
@@ -148,13 +149,12 @@ export default {
                 'base_id': this.$route.params.node_id,
                 'target_id': this.unlink_target
             };
-            this.$store.dispatch('unlinkNode', data)
-               .then(() => {
-                    this.$store.dispatch('resetLoader').then(() => {
-                        this.$store.dispatch('getAllStories').then(() => {
-                            this.$router.go();
-                        });
-                    });
+            this.$store.dispatch('unlinkNode', data).then(() => {
+                   this.$store.dispatch('getAllStories').then(() => {
+                       this.$store.dispatch('getNodeById', this.$route.params.node_id).then((data) => {
+                           Vue.set(this.node, data.data)
+                       });
+                   });
                 }).catch((err) => {
                     // this.$router.push({ path: 'stories' });
                     console.log(err);
@@ -172,17 +172,16 @@ export default {
                 'story_id':     this.$route.params.story_id,
                 'node_id':      this.$route.params.node_id
             };
-            this.$store.dispatch('createNode', data)
-                .then((responseData) => {
+            this.$store.dispatch('createNode', data).then((responseData) => {
                         let optionData = {
                             'target_id': responseData.data.id,
                             'base_id': this.$route.params.node_id
                         };
                         this.$store.dispatch('createOption', optionData).then(() => {
-                                this.$store.dispatch('resetLoader').then(() => {
                                     this.$store.dispatch('getAllStories').then(() => {
-                                        this.$router.go();
-                                    });});});
+                                        this.$store.dispatch('getNodeById', this.$route.params.node_id).then((data) => {
+                                            Vue.set(this.node, data.data)
+                                        });});});
                 }).catch((err) => {
                     console.log(err);
                 });
@@ -194,11 +193,10 @@ export default {
             };
             this.$store.dispatch('createOption', data)
                 .then(() => {
-                    this.$store.dispatch('resetLoader').then(() => {
                         this.$store.dispatch('getAllStories').then(() => {
-                            this.$router.go();
-                        });
-                    });
+                            this.$store.dispatch('getNodeById', this.$route.params.node_id).then((data) => {
+                                Vue.set(this.node, data.data)
+                            });});
                 }).catch((err) => {
                     // this.$router.push({ path: 'stories' });
                     console.log(err);
@@ -216,16 +214,12 @@ export default {
         getNodeId() {
             return this.$route.params.node_id;
         },
-        validateAssignElements(list,item) {
-            let ok = true;
-            if (typeof list.options !== 'undefined') {
-                list.options.forEach((el) => {
-                    if (el.id === item.id) {
-                        ok = false;
-                    }
-                });
+        validateAssignElements(currentNode,item) {
+            if (currentNode.id === item.id) {
+                return false;
+            } else {
+                return true;
             }
-            return ok;
         }
     },
     computed: {
@@ -267,7 +261,6 @@ export default {
             title: '',
             description: '',
             new_node_is_final: [],
-            currentNode: {},
             new_node_options_final: [
                 {text: 'Final Node', value: 1}
             ],
