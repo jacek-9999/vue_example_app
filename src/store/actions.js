@@ -12,24 +12,6 @@ export const clearStories = ({commit}) => {
     commit('clearStories');
 };
 
-export const getStory = ({ commit }, id) => {
-    commit('isLoading', true);
-    api.getStory(id, (nodes) => {
-        nodes.story_id = id;
-        commit('receiveStory', nodes);
-        commit('isLoading', false);
-    })
-};
-
-export const getNodeById = ({commit}, id) => {
-    commit('isLoading', true);
-    return api.getNode(id)
-        .then((data) => {
-            commit('setCurrentNode', data.data);
-            commit('isLoading', false);
-            return data;
-        });
-};
 export const updateNode = ({commit}, data) => {
     commit('isLoading', true);
     return api.updateNode(data)
