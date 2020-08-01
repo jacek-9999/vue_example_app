@@ -35,7 +35,6 @@ export default {
     },
     computed: mapGetters({
         stories_list: 'stories_list',
-        stories: 'stories',
         fetch_stories_from_api: 'fetch_stories_from_api'
     }),
 }

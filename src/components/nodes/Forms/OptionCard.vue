@@ -107,7 +107,7 @@
          >
              <div class="d-block text-center">
                 <b-list-group>
-                <div v-for="item in stories[getStoryId()]" :key="item.id" :item="item">
+                <div v-for="item in stories_list[getStoryId()].nodes" :key="item.id" :item="item">
                     <b-card
                             bg-variant="light"
                             :title="item.title"
@@ -226,7 +226,7 @@ export default {
     },
     computed: {
         ...mapGetters({
-            stories: 'stories',
+            stories_list: 'stories_list',
             currentNode: 'currentNode'
         }),
         titleState() {

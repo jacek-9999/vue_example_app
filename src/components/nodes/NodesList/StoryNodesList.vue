@@ -16,7 +16,7 @@
                 <b-spinner variant="primary" label="Spinning"></b-spinner>
             </div>
             <div v-else>
-                <NodesListElement v-for="item in stories[getStoryId()]" :key="item.id" :item="item">
+                <NodesListElement v-for="item in stories_list[getStoryId()].nodes" :key="item.id" :item="item">
                 </NodesListElement>
             </div>
         </b-list-group>
@@ -40,7 +40,7 @@ export default {
     },
     computed: mapGetters({
         stories_list: 'stories_list',
-        stories: 'stories',
+        // stories: 'stories',
         fetch_stories_from_api: 'fetch_stories_from_api'
     }),
 }

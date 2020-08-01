@@ -73,6 +73,12 @@ export default {
     name: "NodeEditForm",
     components: {OptionCard},
     methods: {
+        getStoryId() {
+            return this.$route.params.story_id;
+        },
+        getNodeId() {
+            return this.$route.params.node_id;
+        },
         cancel: function () {
             this.$store.dispatch('getAllStories').then(() => {
                 this.$router.go(-1);
@@ -98,24 +104,52 @@ export default {
         }
     },
     beforeMount: function() {
-       this.$store
-           .dispatch('getNodeById', this.$route.params.node_id)
-           .then((data) => {
-               this.title = data.data.title;
-               this.description = data.data.description;
-               this.is_final = [data.data.is_final];
-               this.is_initial = data.data.is_initial;
-               this.options = data.data.options;
-               return data;
-           }).catch(() => {
-               this.$store.dispatch('resetLoader').then(() => {
-                   this.$router.go(-1);
-               });
-           });
+       // this.$store
+       //     .dispatch('getNodeById', this.$route.params.node_id)
+       //     .then((data) => {
+        if (typeof this.$store.stories_list === "undefined") {
+            this.$store.dispatch('getAllStories').then((data) => {
+                console.log(data);
+                console.log(this.$store.stories_list);
+                this.title =
+                    this.$store.stories_list[this.$route.params.story_id]
+                        .nodes[this.$route.params.node_id].title;
+                this.description =
+                    this.$store.stories_list[this.$route.params.story_id]
+                        .nodes[this.$route.params.node_id].description;
+                this.is_final =
+                    [this.$store.stories_list[this.$route.params.story_id]
+                        .nodes[this.$route.params.node_id].is_final];
+                this.is_initial =
+                    this.$store.stories_list[this.$route.params.story_id]
+                        .nodes[this.$route.params.node_id].is_initial;
+                this.options =
+                    this.$store.stories_list[this.$route.params.story_id]
+                        .nodes[this.$route.params.node_id].options;
+            });
+        } else {
+            this.title =
+                this.$store.stories_list[this.$route.params.story_id]
+                    .nodes[this.$route.params.node_id].title;
+                    // description
+            this.description =
+                this.$store.stories_list[this.$route.params.story_id]
+                    .nodes[this.$route.params.node_id].description;
+            this.is_final =
+                [this.$store.stories_list[this.$route.params.story_id]
+                    .nodes[this.$route.params.node_id].is_final];
+            this.is_initial =
+                this.$store.stories_list[this.$route.params.story_id]
+                    .nodes[this.$route.params.node_id].is_initial;
+            this.options =
+                this.$store.stories_list[this.$route.params.story_id]
+                    .nodes[this.$route.params.node_id].options;
+        }
        },
     computed: {
         ...mapGetters({
             fetch_stories_from_api: 'fetch_stories_from_api',
+            stories_list: 'stories_list',
             node: 'node'
         }),
         titleState() {
