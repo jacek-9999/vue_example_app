@@ -13,7 +13,7 @@
                 <hr>
                 <div v-if="is_loading" class="text-center">
                     <br/>
-                    <b-spinner variant="primary" label="Spinning"></b-spinner>
+                    <Spinner></Spinner>
                 </div>
                 <div v-else>
                     <story-list-element v-for="item in stories_list" :key="item.story_id" :item="item">
@@ -26,10 +26,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import StoryListElement from "./StoryListElement";
+import Spinner from "../../Layout/Spinner";
 
 export default {
     name: "StoriesList",
-    components: {StoryListElement},
+    components: {Spinner, StoryListElement},
     methods: {
         navToNewNodeForm: function () {
             this.$router.push({ name: 'storyNew' })

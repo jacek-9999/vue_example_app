@@ -3,7 +3,7 @@
             <b-list-group>
                 <div v-if="is_loading" class="text-center">
                     <br/>
-                    <b-spinner variant="primary" label="Spinning"></b-spinner>
+                    <Spinner></Spinner>
                 </div>
                 <div v-else>
                     <b-list-group-item variant="secondary">
@@ -27,10 +27,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import GameListElement from "./GameListElement";
+import Spinner from "../Layout/Spinner";
 
 export default {
     name: "GameList",
-    components: {GameListElement},
+    components: {Spinner, GameListElement},
     methods: {
     },
     computed: mapGetters({

@@ -2,7 +2,7 @@
     <div>
         <div v-if="loader" class="text-center">
             <br/>
-            <b-spinner variant="primary" label="Spinning"></b-spinner>
+            <Spinner></Spinner>
         </div>
         <div v-else>
             <b-card-group>
@@ -29,10 +29,12 @@
 </template>
 <script>
 import {getNode} from "../../api";
+import Spinner from "../Layout/Spinner";
 
 
 export default {
     name: "NodeEditForm",
+    components: {Spinner},
     data() {
         return {
             currentNode: {},
