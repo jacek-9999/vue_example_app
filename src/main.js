@@ -8,6 +8,7 @@ import store from './store'
 import router from './router'
 
 
+getAllStories(store);
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
@@ -19,4 +20,3 @@ new Vue({
   router
 }).$mount('#app')
 
-getAllStories(store);

@@ -2,10 +2,12 @@ import * as api from '../api'
 
 export const getAllStories = ({ commit }) => {
     commit('isLoading', true);
-    api.getAllStories(stories => {
-        commit('receiveStories', stories);
-        commit('isLoading', false);
-    });
+    return api.getAllStories()
+        .then((stories) => {
+            commit('receiveStories', stories.data);
+            commit('isLoading', false);
+            return stories;
+    })
 };
 
 export const clearStories = ({commit}) => {

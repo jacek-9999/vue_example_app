@@ -1,7 +1,11 @@
 <template>
     <div>
-    <b-card-group columns>
-        <b-card v-for="item in current_node.options" :key="item.id" :item="item" @click="setUnlinkOption(item.id)">
+    <div v-if="is_loading" class="text-center">
+        <br/>
+        <b-spinner variant="primary" label="Spinning"></b-spinner>
+    </div>
+    <b-card-group v-else  columns>
+        <b-card v-for="item in currentNode.options" :key="item.id" :item="item" @click="setUnlinkOption(item.id)">
             <b-card-text>
                 {{item.title}}
             </b-card-text>
@@ -107,17 +111,17 @@
          >
              <div class="d-block text-center">
                 <b-list-group>
-                <div v-for="item in stories_list[getStoryId()].nodes" :key="item.id" :item="item">
+                <div v-for="item in currentNode.nodes" :key="item.id" :item="item">
                     <b-card
                             bg-variant="light"
                             :title="item.title"
-                            v-if="validateAssignElements(current_node, item)">
+                            v-if="validateAssignElements(currentNode, item)">
                         <b-badge v-if="item.is_initial" variant="danger">ID: {{item.id}}(initial)</b-badge>
                         <b-badge v-else-if="item.is_final" variant="warning">ID: {{item.id}}(final)</b-badge>
                         <b-badge v-else variant="info">ID: {{item.id}}</b-badge>
                         <hr><b-button variant="warning"  @click="submitAssign(item.id)">Assign</b-button>
                     </b-card>
-                    <hr v-if="validateAssignElements(current_node, item)">
+                    <hr v-if="validateAssignElements(currentNode, item)">
                 </div>
                 </b-list-group>
              </div>
@@ -139,7 +143,7 @@ export default {
     components: {
     },
     mount: function () {
-        this.current_node =
+        this.currentNode =
             this.$store.stories_list[this.$route.params.story_id]
                 .nodes[this.$route.params.node_id];
     },
@@ -232,6 +236,7 @@ export default {
     computed: {
         ...mapGetters({
             stories_list: 'stories_list',
+            is_loading: 'is_loading'
         }),
         titleState() {
             return this.title.length > 1 ? true : false
@@ -266,7 +271,7 @@ export default {
             title: '',
             description: '',
             new_node_is_final: [],
-            current_node: {},
+            currentNode: {},
             new_node_options_final: [
                 {text: 'Final Node', value: 1}
             ],

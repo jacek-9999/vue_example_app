@@ -37,26 +37,8 @@ export function deleteStory(id) {
     return axios.delete(endPoint + '/story/' + id);
 }
 
-export function getStory(id, callback) {
-    axios
-        .get(endPoint + '/story/' + id)
-        .then(response => (
-            callback(response.data)
-        ))
-        .catch(function (error) {
-            console.log(error);
-        });
-}
-
-export function getAllStories(callback) {
-    axios
-        .get(endPoint + '/stories')
-        .then(response => (
-            callback(response.data)
-        ))
-        .catch(function (error) {
-            console.log(error);
-        });
+export function getAllStories() {
+    return axios.get(endPoint + '/stories');
 }
 
 /*

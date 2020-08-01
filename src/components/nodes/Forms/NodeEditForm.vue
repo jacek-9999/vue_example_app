@@ -95,15 +95,24 @@ export default {
                 }).catch((err) => {
                     console.log(err);
                 });
+        },
+        loadFormData: function () {
+            this.title = this.currentNode.title;
+            this.description = this.currentNode.description;
+            this.is_final = [
+                this.currentNode.is_final
+            ];
+            this.initial = this.currentNode.is_initial;
         }
     },
-    mounted: function() {
-        this.title = this.currentNode.title;
-        this.description = this.currentNode.description;
-        this.is_final = [
-            this.currentNode.is_final
-        ];
-        this.initial = this.currentNode.is_initial;
+    mounted: async function() {
+        // case when user go to /story/:id/nodes/:id/edit directly without visit previous route
+        if (typeof this.stories_list[this.$route.params.story_id] === "undefined") {
+            await new Promise(r => setTimeout(r, 2000));
+            this.loadFormData();
+        } else {
+            this.loadFormData();
+        }
     },
     computed: {
         ...mapGetters({
