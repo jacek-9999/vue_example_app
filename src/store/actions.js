@@ -10,6 +10,16 @@ export const getAllStories = ({ commit }) => {
     })
 };
 
+export const getNodeById = ({commit}, id) => {
+    commit('isLoading', true);
+    return api.getNode(id)
+        .then((data) => {
+            commit('receiveNode', data.data);
+            commit('isLoading', false);
+            return data;
+        });
+};
+
 export const clearStories = ({commit}) => {
     commit('clearStories');
 };

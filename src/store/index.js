@@ -15,9 +15,7 @@ const state = {
         loading: true,
         requests_pending: 0
     },
-    node: {
-
-    },
+    node: {},
     currentNode: {},
     node_prepared_to_delete: null,
     story_prepared_to_delete: null

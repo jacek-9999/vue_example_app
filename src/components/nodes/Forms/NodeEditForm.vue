@@ -106,6 +106,7 @@ export default {
         }
     },
     mounted: async function() {
+        this.$store.dispatch('getNodeById', this.$route.params.node_id);
         // case when user go to /story/:id/nodes/:id/edit directly without visit previous route
         if (typeof this.stories_list[this.$route.params.story_id] === "undefined") {
             await new Promise(r => setTimeout(r, 2000));

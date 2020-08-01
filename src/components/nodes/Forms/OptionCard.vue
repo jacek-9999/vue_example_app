@@ -5,7 +5,7 @@
         <b-spinner variant="primary" label="Spinning"></b-spinner>
     </div>
     <b-card-group v-else  columns>
-        <b-card v-for="item in currentNode.options" :key="item.id" :item="item" @click="setUnlinkOption(item.id)">
+        <b-card v-for="item in node.options" :key="item.id" :item="item" @click="setUnlinkOption(item.id)">
             <b-card-text>
                 {{item.title}}
             </b-card-text>
@@ -142,11 +142,6 @@ export default {
     name: 'OptionCard',
     components: {
     },
-    mount: function () {
-        this.currentNode =
-            this.$store.stories_list[this.$route.params.story_id]
-                .nodes[this.$route.params.node_id];
-    },
     methods:{
         submitUnlink() {
             let data = {
@@ -236,7 +231,8 @@ export default {
     computed: {
         ...mapGetters({
             stories_list: 'stories_list',
-            is_loading: 'is_loading'
+            is_loading: 'is_loading',
+            node: 'node'
         }),
         titleState() {
             return this.title.length > 1 ? true : false

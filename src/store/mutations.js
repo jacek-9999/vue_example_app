@@ -17,7 +17,7 @@ export default {
         Vue.set(state.stories, nodes.story_id, nodes);
     },
     receiveNode(state, node) {
-        Vue.set(state.node, node.id, node);
+        Vue.set(state.node, 'current', node);
     },
     setCurrentNode(state, node) {
         Vue.set(state.currentNode, 'current', node);
