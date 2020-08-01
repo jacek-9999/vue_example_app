@@ -23,16 +23,16 @@ export default {
         Vue.set(state.currentNode, 'current', node);
     },
     isLoading(state, isLoading) {
-        // if (isLoading) {
-        //     state.fetch_stories_from_api.requests_pending++;
-        // } else {
-        //     state.fetch_stories_from_api.requests_pending--;
-        // }
-        // if ((!isLoading && (state.fetch_stories_from_api.requests_pending === 0))
-        //     || (isLoading && (state.fetch_stories_from_api.requests_pending > 0))) {
+        if (isLoading) {
+            state.requests_pending++;
+        } else {
+            state.requests_pending--;
+        }
+        if ((!isLoading && (state.requests_pending === 0))
+            || (isLoading && (state.requests_pending > 0))) {
         //     Vue.set(state.fetch_stories_from_api, 'loading', isLoading);
             Vue.set(state, 'is_loading', isLoading);
-        // }
+        }
     },
     prepareNodeToDelete(state, node) {
         state.node_prepared_to_delete = node;

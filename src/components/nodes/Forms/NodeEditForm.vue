@@ -1,7 +1,7 @@
 <template>
     <div v-if="is_loading" class="text-center">
         <br/>
-        <b-spinner variant="primary" label="Spinning"></b-spinner>
+        <Spinner></Spinner>
     </div>
     <b-card v-else bg-variant="light">
         <b-form-group
@@ -68,10 +68,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import OptionCard from "./OptionCard";
+import Spinner from "../../Layout/Spinner";
 
 export default {
     name: "NodeEditForm",
-    components: {OptionCard},
+    components: {Spinner, OptionCard},
     methods: {
         cancel: function () {
             this.$store.dispatch('getAllStories').then(() => {

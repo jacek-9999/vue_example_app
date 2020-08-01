@@ -11,10 +11,10 @@ const state = {
     stories: [],
     stories_list: {
     },
-    fetch_stories_from_api: {
+    // fetch_stories_from_api: {
         loading: true,
-        requests_pending: 0
-    },
+        requests_pending: 0,
+    // },
     node: {},
     currentNode: {},
     node_prepared_to_delete: null,

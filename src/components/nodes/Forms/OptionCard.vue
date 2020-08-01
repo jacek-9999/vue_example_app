@@ -2,7 +2,7 @@
     <div>
     <div v-if="is_loading" class="text-center">
         <br/>
-        <b-spinner variant="primary" label="Spinning"></b-spinner>
+        <Spinner></Spinner>
     </div>
     <b-card-group v-else  columns>
         <b-card v-for="item in node.options" :key="item.id" :item="item" @click="setUnlinkOption(item.id)">
@@ -138,10 +138,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import Vue from 'vue'
+import Spinner from "../../Layout/Spinner";
 
 export default {
     name: 'OptionCard',
     components: {
+        Spinner
     },
     methods:{
         submitUnlink() {
@@ -215,11 +217,16 @@ export default {
             return this.$route.params.node_id;
         },
         validateAssignElements(currentNode,item) {
+            let ok = true;
             if (currentNode.id === item.id) {
-                return false;
-            } else {
-                return true;
+                ok = false;
             }
+            this.node.options.forEach((el) => {
+                if (el.id === item.id) {
+                    ok = false;
+                }
+            });
+            return ok;
         }
     },
     computed: {
