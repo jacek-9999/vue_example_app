@@ -19,6 +19,4 @@ new Vue({
   router
 }).$mount('#app')
 
-// getNode(1, (data) => console.log(data));
-// getStory(1, (data) => console.log(data));
 getAllStories(store);

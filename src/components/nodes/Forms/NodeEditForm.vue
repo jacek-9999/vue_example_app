@@ -1,5 +1,5 @@
 <template>
-    <div v-if="fetch_stories_from_api.loading" class="text-center">
+    <div v-if="is_loading" class="text-center">
         <br/>
         <b-spinner variant="primary" label="Spinning"></b-spinner>
     </div>
@@ -73,12 +73,6 @@ export default {
     name: "NodeEditForm",
     components: {OptionCard},
     methods: {
-        getStoryId() {
-            return this.$route.params.story_id;
-        },
-        getNodeId() {
-            return this.$route.params.node_id;
-        },
         cancel: function () {
             this.$store.dispatch('getAllStories').then(() => {
                 this.$router.go(-1);
@@ -103,55 +97,23 @@ export default {
                 });
         }
     },
-    beforeMount: function() {
-       // this.$store
-       //     .dispatch('getNodeById', this.$route.params.node_id)
-       //     .then((data) => {
-        if (typeof this.$store.stories_list === "undefined") {
-            this.$store.dispatch('getAllStories').then((data) => {
-                console.log(data);
-                console.log(this.$store.stories_list);
-                this.title =
-                    this.$store.stories_list[this.$route.params.story_id]
-                        .nodes[this.$route.params.node_id].title;
-                this.description =
-                    this.$store.stories_list[this.$route.params.story_id]
-                        .nodes[this.$route.params.node_id].description;
-                this.is_final =
-                    [this.$store.stories_list[this.$route.params.story_id]
-                        .nodes[this.$route.params.node_id].is_final];
-                this.is_initial =
-                    this.$store.stories_list[this.$route.params.story_id]
-                        .nodes[this.$route.params.node_id].is_initial;
-                this.options =
-                    this.$store.stories_list[this.$route.params.story_id]
-                        .nodes[this.$route.params.node_id].options;
-            });
-        } else {
-            this.title =
-                this.$store.stories_list[this.$route.params.story_id]
-                    .nodes[this.$route.params.node_id].title;
-                    // description
-            this.description =
-                this.$store.stories_list[this.$route.params.story_id]
-                    .nodes[this.$route.params.node_id].description;
-            this.is_final =
-                [this.$store.stories_list[this.$route.params.story_id]
-                    .nodes[this.$route.params.node_id].is_final];
-            this.is_initial =
-                this.$store.stories_list[this.$route.params.story_id]
-                    .nodes[this.$route.params.node_id].is_initial;
-            this.options =
-                this.$store.stories_list[this.$route.params.story_id]
-                    .nodes[this.$route.params.node_id].options;
-        }
-       },
+    mounted: function() {
+        this.title = this.currentNode.title;
+        this.description = this.currentNode.description;
+        this.is_final = [
+            this.currentNode.is_final
+        ];
+        this.initial = this.currentNode.is_initial;
+    },
     computed: {
         ...mapGetters({
-            fetch_stories_from_api: 'fetch_stories_from_api',
             stories_list: 'stories_list',
-            node: 'node'
+            is_loading: 'is_loading'
         }),
+        currentNode: function () {
+            return this.stories_list[this.$route.params.story_id]
+                .nodes[this.$route.params.node_id];
+        },
         titleState() {
             return this.title.length > 1 ? true : false
         },

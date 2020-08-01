@@ -9,6 +9,7 @@ export default {
     receiveStories(state, stories) {
         stories.forEach(story => {
             Vue.set(state.stories_list, story.story_id, story);
+            // localStorage.setItem(story.story_id, story);
         //     getStory(store, story.story_id)
         });
     },
@@ -22,15 +23,16 @@ export default {
         Vue.set(state.currentNode, 'current', node);
     },
     isLoading(state, isLoading) {
-        if (isLoading) {
-            state.fetch_stories_from_api.requests_pending++;
-        } else {
-            state.fetch_stories_from_api.requests_pending--;
-        }
-        if ((!isLoading && (state.fetch_stories_from_api.requests_pending === 0))
-            || (isLoading && (state.fetch_stories_from_api.requests_pending > 0))) {
-            Vue.set(state.fetch_stories_from_api, 'loading', isLoading);
-        }
+        // if (isLoading) {
+        //     state.fetch_stories_from_api.requests_pending++;
+        // } else {
+        //     state.fetch_stories_from_api.requests_pending--;
+        // }
+        // if ((!isLoading && (state.fetch_stories_from_api.requests_pending === 0))
+        //     || (isLoading && (state.fetch_stories_from_api.requests_pending > 0))) {
+        //     Vue.set(state.fetch_stories_from_api, 'loading', isLoading);
+            Vue.set(state, 'is_loading', isLoading);
+        // }
     },
     prepareNodeToDelete(state, node) {
         state.node_prepared_to_delete = node;
@@ -39,7 +41,7 @@ export default {
         state.story_prepared_to_delete = story;
     },
     resetLoader(state) {
-        state.fetch_stories_from_api.loading = false;
-        state.fetch_stories_from_api.requests_pending = 0;
+        state.is_loading = false;
+        // state.fetch_stories_from_api.requests_pending = 0;
     },
 }

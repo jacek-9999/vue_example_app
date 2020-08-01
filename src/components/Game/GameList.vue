@@ -1,7 +1,7 @@
 <template>
     <div class="StoriesList col-9 mx-auto">
             <b-list-group>
-                <div v-if="fetch_stories_from_api.loading" class="text-center">
+                <div v-if="is_loading" class="text-center">
                     <br/>
                     <b-spinner variant="primary" label="Spinning"></b-spinner>
                 </div>
@@ -35,7 +35,7 @@ export default {
     },
     computed: mapGetters({
         stories_list: 'stories_list',
-        fetch_stories_from_api: 'fetch_stories_from_api'
+        is_loading: 'is_loading'
     }),
 }
 </script>

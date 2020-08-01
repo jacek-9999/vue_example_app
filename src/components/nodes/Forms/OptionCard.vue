@@ -1,7 +1,7 @@
 <template>
     <div>
     <b-card-group columns>
-        <b-card v-for="item in currentNode.current.options" :key="item.id" :item="item" @click="setUnlinkOption(item.id)">
+        <b-card v-for="item in current_node.options" :key="item.id" :item="item" @click="setUnlinkOption(item.id)">
             <b-card-text>
                 {{item.title}}
             </b-card-text>
@@ -111,13 +111,13 @@
                     <b-card
                             bg-variant="light"
                             :title="item.title"
-                            v-if="validateAssignElements(currentNode, item)">
+                            v-if="validateAssignElements(current_node, item)">
                         <b-badge v-if="item.is_initial" variant="danger">ID: {{item.id}}(initial)</b-badge>
                         <b-badge v-else-if="item.is_final" variant="warning">ID: {{item.id}}(final)</b-badge>
                         <b-badge v-else variant="info">ID: {{item.id}}</b-badge>
                         <hr><b-button variant="warning"  @click="submitAssign(item.id)">Assign</b-button>
                     </b-card>
-                    <hr v-if="validateAssignElements(currentNode, item)">
+                    <hr v-if="validateAssignElements(current_node, item)">
                 </div>
                 </b-list-group>
              </div>
@@ -137,6 +137,11 @@ import { mapGetters } from 'vuex'
 export default {
     name: 'OptionCard',
     components: {
+    },
+    mount: function () {
+        this.current_node =
+            this.$store.stories_list[this.$route.params.story_id]
+                .nodes[this.$route.params.node_id];
     },
     methods:{
         submitUnlink() {
@@ -214,8 +219,8 @@ export default {
         },
         validateAssignElements(list,item) {
             let ok = true;
-            if (typeof list.current.options !== 'undefined') {
-                list.current.options.forEach((el) => {
+            if (typeof list.options !== 'undefined') {
+                list.options.forEach((el) => {
                     if (el.id === item.id) {
                         ok = false;
                     }
@@ -227,7 +232,6 @@ export default {
     computed: {
         ...mapGetters({
             stories_list: 'stories_list',
-            currentNode: 'currentNode'
         }),
         titleState() {
             return this.title.length > 1 ? true : false
@@ -251,11 +255,9 @@ export default {
         },
         validTitleFeedback() {
             return 'Submit'
-            // return this.state === true ? 'Thank you' : ''
         },
         validDescriptionFeedback() {
             return 'Submit'
-            // return this.state === true ? 'Thank you' : ''
         }
     },
     data: () => {
@@ -264,6 +266,7 @@ export default {
             title: '',
             description: '',
             new_node_is_final: [],
+            current_node: {},
             new_node_options_final: [
                 {text: 'Final Node', value: 1}
             ],
