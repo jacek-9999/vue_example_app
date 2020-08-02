@@ -6,6 +6,7 @@ import NodeEditForm from "./components/nodes/Forms/NodeEditForm";
 import NodeNewForm from "./components/nodes/Forms/NodeNewForm";
 import GamesListBase from "./components/Game/GameListBase";
 import Game from "./components/Game/Game";
+import LoginForm from "./components/Login/LoginForm";
 
 Vue.use(Router);
 
@@ -50,6 +51,11 @@ export default new Router({
             path: '/story/new',
             name: 'storyNew',
             component: NodeNewForm
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: LoginForm
         }
     ]
 })
