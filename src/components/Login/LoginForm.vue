@@ -16,8 +16,15 @@ export default {
     computed: {},
     methods: {
         submit: function () {
-            console.log(this.login);
-            console.log(this.password);
+            let payload = {
+                'username': this.login,
+                'password': this.password
+            };
+            this.$store.dispatch('login', payload).then((data) => {
+                console.log(data);
+            }).catch((cc) => {
+                console.log(cc);
+            });
         }
     },
     data() {

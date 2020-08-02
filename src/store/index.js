@@ -15,6 +15,8 @@ const state = {
         loading: true,
         requests_pending: 0,
     // },
+    authorized: false,
+    token: null,
     node: {},
     currentNode: {},
     node_prepared_to_delete: null,

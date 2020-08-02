@@ -32,6 +32,7 @@ export const updateNode = ({commit}, data) => {
             return data;
         });
 };
+
 export const createNode = ({commit}, data) => {
     commit('isLoading', true);
     return api.createNode(data)
@@ -40,6 +41,7 @@ export const createNode = ({commit}, data) => {
             return data;
         });
 };
+
 export const createOption = ({commit}, data) => {
     commit('isLoading', true);
     return api.createOption(data)
@@ -48,12 +50,15 @@ export const createOption = ({commit}, data) => {
             return data;
         });
 };
+
 export const prepareNodeToDelete = ({commit}, node) => {
     commit('prepareNodeToDelete', node);
 };
+
 export const prepareStoryToDelete = ({commit}, story) => {
     commit('prepareStoryToDelete', story);
 };
+
 export const deleteNode = ({commit}, id) => {
     commit('isLoading', true);
     return api.deleteNode(id).then((data) => {
@@ -62,6 +67,7 @@ export const deleteNode = ({commit}, id) => {
             return data;
         });
 };
+
 export const deleteStory = ({commit}, id) => {
     commit('isLoading', true);
     return api.deleteStory(id).then((data) => {
@@ -70,6 +76,7 @@ export const deleteStory = ({commit}, id) => {
             return data;
         });
 };
+
 export const unlinkNode = ({commit}, data) => {
     commit('isLoading', true);
     return api.unlinkNode(data).then((data) => {
@@ -77,6 +84,19 @@ export const unlinkNode = ({commit}, data) => {
             return data;
         });
 };
+
 export const resetLoader = ({commit}) => {
     commit('resetLoader');
+};
+
+export const login = ({commit}, payload) => {
+    commit('isLoading', true);
+    return api.login(payload)
+        .then((data) => {
+            commit('saveToken', data.data);
+            return data.data;
+        });
+};
+export const logout = ({commit}) => {
+    commit('deleteToken');
 };

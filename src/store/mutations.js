@@ -44,4 +44,12 @@ export default {
         state.is_loading = false;
         // state.fetch_stories_from_api.requests_pending = 0;
     },
+    saveToken(state, token) {
+        state.token = token;
+        state.authorized = true;
+    },
+    deleteToken(state) {
+        state.token = null;
+        state.authorized = false;
+    }
 }

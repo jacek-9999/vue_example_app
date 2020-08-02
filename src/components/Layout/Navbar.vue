@@ -26,7 +26,10 @@ export default {
     },
     methods:{
       logout: function () {
-          alert('not work in demo version');
+          this.$store.dispatch('logout')
+              .then(() => {
+                  this.$router.push({path: 'login'});
+              });
       },
       isPath: function(path) {
           return this.$route.name === path
