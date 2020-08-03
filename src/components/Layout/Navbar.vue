@@ -1,6 +1,5 @@
 <template>
     <div>
-        {{authorized}}
         <b-navbar type="dark" variant="secondary" fixed="top">
             <b-navbar-nav>
                 <b-nav-item v-if="(!isPath('stories') && authorized)" :to="{path: '/'}">

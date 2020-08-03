@@ -10,7 +10,7 @@ import LoginForm from "./components/Login/LoginForm";
 
 Vue.use(Router);
 
-export default new Router({
+let router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     scrollBehavior() {
@@ -18,44 +18,85 @@ export default new Router({
     },
     routes: [
         {
+            path: '/login',
+            name: 'login',
+            component: LoginForm,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
             path: '/games',
             name: 'games',
-            component: GamesListBase
+            component: GamesListBase,
+            meta: {
+                requiresAuth: false
+            }
         },
         {
             path: '/game/:story_id',
             name: 'game',
-            component: Game
+            component: Game,
+            meta: {
+                requiresAuth: false
+            }
         },
         {
             path: '/',
             name: 'stories',
-            component: StoriesListBase
+            component: StoriesListBase,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/story/:story_id',
             name: 'story',
-            component: StoriesNodesListBase
+            component: StoriesNodesListBase,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/story/:story_id/nodes/:node_id/edit',
             name: 'nodesEdit',
-            component: NodeEditForm
+            component: NodeEditForm,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/story/:story_id/nodes/new',
             name: 'nodesNew',
-            component: NodeNewForm
+            component: NodeNewForm,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/story/new',
             name: 'storyNew',
-            component: NodeNewForm
-        },
-        {
-            path: '/login',
-            name: 'login',
-            component: LoginForm
+            component: NodeNewForm,
+            meta: {
+                requiresAuth: true
+            }
         }
     ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+    // console.log(to.matched);
+    if(to.matched.some(record => record.meta.requiresAuth)) {
+        console.log('test1');
+        if (localStorage.getItem('token') == 'null') {
+            console.log('test2');
+            return next({
+                path: '/login',
+                params: { nextUrl: to.fullPath }
+            });
+        }
+    }
+    return next();
+});
+
+export default router
