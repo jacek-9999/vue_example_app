@@ -39,10 +39,11 @@ export default {
             return this.$route.params.story_id;
         }
     },
-    computed: mapGetters({
-        stories_list: 'stories_list',
-        // stories: 'stories',
-        is_loading: 'is_loading'
+    computed:
+        mapGetters({
+            stories_list: 'stories_list',
+            // stories: 'stories',
+            is_loading: 'is_loading'
     }),
 }
 </script>
