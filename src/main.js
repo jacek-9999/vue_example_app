@@ -7,7 +7,11 @@ import {getAllStories, initAuth} from "./store/actions";
 import store from './store'
 import router from './router'
 
-initAuth(store, (store) => getAllStories(store));
+if (localStorage.getItem('token') !== null) {
+  initAuth(store);
+}
+getAllStories(store);
+
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);

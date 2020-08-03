@@ -98,10 +98,11 @@ export const login = ({commit}, payload) => {
         });
 };
 
-export const initAuth = ({commit}, cb) => {
+export const initAuth = ({commit}) => {
     let token = localStorage.getItem('token') || null;
     commit('setToken', token);
-    cb({commit});
+    // getAllStories(commit);
+    // this.$store.dispatch(dispatch);
 };
 
 export const logout = ({commit}) => {

@@ -9,8 +9,6 @@ export default {
     receiveStories(state, stories) {
         stories.forEach(story => {
             Vue.set(state.stories_list, story.story_id, story);
-            // localStorage.setItem(story.story_id, story);
-        //     getStory(store, story.story_id)
         });
     },
     receiveStory(state, nodes) {
@@ -46,7 +44,7 @@ export default {
     },
     setToken(state, token) {
         state.token = token;
-        localStorage.setItem('token', state.token);
+        localStorage.setItem('token', token);
     },
     deleteToken(state) {
         localStorage.removeItem('token');

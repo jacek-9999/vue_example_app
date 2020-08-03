@@ -107,13 +107,15 @@ export default {
         }
     },
     mounted: async function() {
-        this.$store.dispatch('getNodeById', this.$route.params.node_id);
-        if (typeof this.stories_list[this.$route.params.story_id] === "undefined") {
-            await new Promise(r => setTimeout(r, 2000));
-            this.loadFormData();
-        } else {
-            this.loadFormData();
-        }
+        this.$store.dispatch('getNodeById', this.$route.params.node_id)
+            .then(async () => {
+                if (typeof this.stories_list[this.$route.params.story_id] === "undefined") {
+                    await new Promise(r => setTimeout(r, 2000));
+                    this.loadFormData();
+                } else {
+                    this.loadFormData();
+                }
+            });
     },
     computed: {
         ...mapGetters({

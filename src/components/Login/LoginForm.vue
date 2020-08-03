@@ -22,6 +22,7 @@ export default {
             };
             this.$store.dispatch('login', payload).then(() => {
                 this.$store.dispatch('getAllStories').then(() => {
+                    this.$store.dispatch('resetLoader');
                     this.$router.push({path: '/'});
                 });
             }).catch((cc) => {

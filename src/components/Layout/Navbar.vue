@@ -33,7 +33,7 @@ export default {
       logout: function () {
           this.$store.dispatch('logout')
               .then(() => {
-                  this.$router.push({path: 'login'});
+                  this.$router.push({path: '/login'});
               });
       },
       isPath: function(path) {
