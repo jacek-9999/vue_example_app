@@ -7,16 +7,15 @@ import {getAllStories, initAuth} from "./store/actions";
 import store from './store'
 import router from './router'
 
-initAuth(store);
-getAllStories(store);
+initAuth(store, (store) => getAllStories(store));
 
-Vue.config.productionTip = false
-Vue.use(BootstrapVue)
-Vue.use(IconsPlugin)
-Vue.use(LayoutPlugin)
+Vue.config.productionTip = false;
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
+Vue.use(LayoutPlugin);
 new Vue({
   render: h => h(App),
   store,
   router
-}).$mount('#app')
+}).$mount('#app');
 

@@ -93,14 +93,15 @@ export const login = ({commit}, payload) => {
     commit('isLoading', true);
     return api.login(payload)
         .then((data) => {
-            commit('setToken', data.data);
+            commit('setToken', data.data.token);
             return data.data;
         });
 };
 
-export const initAuth = ({commit}) => {
-    let token = JSON.parse(localStorage.getItem('token') || null);
+export const initAuth = ({commit}, cb) => {
+    let token = localStorage.getItem('token') || null;
     commit('setToken', token);
+    cb({commit});
 };
 
 export const logout = ({commit}) => {

@@ -85,11 +85,8 @@ let router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-    // console.log(to.matched);
     if(to.matched.some(record => record.meta.requiresAuth)) {
-        console.log('test1');
         if (localStorage.getItem('token') == 'null') {
-            console.log('test2');
             return next({
                 path: '/login',
                 params: { nextUrl: to.fullPath }
