@@ -20,8 +20,10 @@ export default {
                 'username': this.login,
                 'password': this.password
             };
-            this.$store.dispatch('login', payload).then((data) => {
-                console.log(data);
+            this.$store.dispatch('login', payload).then(() => {
+                this.$store.dispatch('getAllStories').then(() => {
+                    this.$router.push({path: '/'});
+                });
             }).catch((cc) => {
                 console.log(cc);
             });

@@ -93,10 +93,16 @@ export const login = ({commit}, payload) => {
     commit('isLoading', true);
     return api.login(payload)
         .then((data) => {
-            commit('saveToken', data.data);
+            commit('setToken', data.data);
             return data.data;
         });
 };
+
+export const initAuth = ({commit}) => {
+    let token = JSON.parse(localStorage.getItem('token') || null);
+    commit('setToken', token);
+};
+
 export const logout = ({commit}) => {
     commit('deleteToken');
 };

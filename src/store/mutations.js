@@ -44,12 +44,12 @@ export default {
         state.is_loading = false;
         // state.fetch_stories_from_api.requests_pending = 0;
     },
-    saveToken(state, token) {
-        localStorage.setItem('token', token);
-        state.authorized = true;
+    setToken(state, token) {
+        state.token = token;
+        localStorage.setItem('token', state.token);
     },
     deleteToken(state) {
         localStorage.removeItem('token');
-        state.authorized = false;
+        state.token = null;
     }
 }
