@@ -49,7 +49,7 @@
             </b-form-group>
             <hr>
             Options:
-            <OptionCard></OptionCard>
+            <OptionCard v-if="nodeReady()"></OptionCard>
             <hr>
             <div class="col-12">
                 <div class="d-flex justify-content-between">
@@ -74,6 +74,9 @@ export default {
     name: "NodeEditForm",
     components: {Spinner, OptionCard},
     methods: {
+        nodeReady: function() {
+            return (typeof this.node != 'undefined');
+        },
         cancel: function () {
             this.$store.dispatch('getAllStories').then(() => {
                 this.$router.go(-1);
@@ -115,12 +118,15 @@ export default {
                 } else {
                     this.loadFormData();
                 }
-            });
+            }).then(() => {
+                this.$store.dispatch('resetLoader');
+        });
     },
     computed: {
         ...mapGetters({
             stories_list: 'stories_list',
-            is_loading: 'is_loading'
+            is_loading: 'is_loading',
+            node: 'node'
         }),
         currentNode: function () {
             return this.stories_list[this.$route.params.story_id]
