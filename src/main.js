@@ -9,8 +9,8 @@ import router from './router'
 
 if (localStorage.getItem('token') !== null) {
   initAuth(store);
+  getAllStories(store);
 }
-getAllStories(store);
 
 
 Vue.config.productionTip = false;

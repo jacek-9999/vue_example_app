@@ -11,10 +11,10 @@ const state = {
     stories: [],
     stories_list: {
     },
-    // fetch_stories_from_api: {
-        loading: true,
-        requests_pending: 0,
-    // },
+    games_list: {
+    },
+    loading: true,
+    requests_pending: 0,
     authorized: false,
     token: null,
     node: {},

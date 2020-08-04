@@ -10,6 +10,16 @@ export const getAllStories = ({ commit }) => {
     })
 };
 
+export const getGames = ({ commit }) => {
+    commit('isLoading', true);
+    return api.getGames()
+        .then((stories) => {
+            commit('receiveGames', stories.data);
+            commit('isLoading', false);
+            return stories;
+    })
+};
+
 export const getNodeById = ({commit}, id) => {
     commit('isLoading', true);
     return api.getNode(id)

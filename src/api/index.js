@@ -31,6 +31,9 @@ export function deleteStory(id) {
 export function getAllStories() {
     return axios.get(endPoint + '/stories');
 }
+export function getGames() {
+    return axios.get(endPoint + '/games');
+}
 export function login(payload) {
     return axios.put(endPoint + '/login', payload);
 }

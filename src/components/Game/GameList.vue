@@ -13,10 +13,8 @@
                             <div></div>
                         </div>
                     </b-list-group-item>
-
-
                     <hr>
-                    <game-list-element v-for="item in stories_list" :key="item.story_id" :item="item">
+                    <game-list-element v-for="item in games_list" :key="item.story_id" :item="item">
                     </game-list-element>
                 </div>
                 <hr>
@@ -34,9 +32,14 @@ export default {
     components: {Spinner, GameListElement},
     methods: {
     },
-    computed: mapGetters({
-        stories_list: 'stories_list',
-        is_loading: 'is_loading'
-    }),
+    computed: {
+        ...mapGetters({
+            games_list: 'games_list',
+            is_loading: 'is_loading'
+        }),
+    },
+    mounted() {
+        this.$store.dispatch('getGames');
+    }
 }
 </script>

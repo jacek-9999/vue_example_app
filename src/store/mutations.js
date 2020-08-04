@@ -11,6 +11,11 @@ export default {
             Vue.set(state.stories_list, story.story_id, story);
         });
     },
+    receiveGames(state, games) {
+        games.forEach(game => {
+            Vue.set(state.games_list, game.story_id, game);
+        });
+    },
     receiveStory(state, nodes) {
         Vue.set(state.stories, nodes.story_id, nodes);
     },

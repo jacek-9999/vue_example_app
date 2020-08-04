@@ -1,4 +1,5 @@
 export const stories_list = state => state.stories_list;
+export const games_list = state => state.games_list;
 export const stories = state => state.stories;
 export const node = (state) => state.node.current;
 export const currentNode = state => state.currentNode;
