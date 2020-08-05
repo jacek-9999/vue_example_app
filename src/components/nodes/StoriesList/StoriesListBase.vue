@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="d-flex">
-      <b-modal ref="delete-story-modal" hide-footer id="delete-story-modal" title="Delete Story Confirmation">
+      <b-modal v-if="stories_list" ref="delete-story-modal" hide-footer id="delete-story-modal" title="Delete Story Confirmation">
           <div class="d-block text-center">
               <h5 v-if="story_prepared_to_delete">
                   <hr>
@@ -51,6 +51,7 @@ export default {
   },
   computed: {
       ...mapGetters({
+          stories_list: 'stories_list',
           story_prepared_to_delete: 'story_prepared_to_delete'
       }
   )}

@@ -1,8 +1,8 @@
 import * as api from '../api'
 
-export const getAllStories = ({ commit }) => {
+export const getAllStories = ({ commit }, token = false) => {
     commit('isLoading', true);
-    return api.getAllStories()
+    return api.getAllStories(token)
         .then((stories) => {
             commit('receiveStories', stories.data);
             commit('isLoading', false);
@@ -104,7 +104,7 @@ export const login = ({commit}, payload) => {
     return api.login(payload)
         .then((data) => {
             commit('setToken', data.data.token);
-            return data.data;
+            return data.data.token;
         });
 };
 

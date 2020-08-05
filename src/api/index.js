@@ -28,7 +28,10 @@ export function deleteNode(id) {
 export function deleteStory(id) {
     return axios.delete(endPoint + '/story/' + id);
 }
-export function getAllStories() {
+export function getAllStories(token = false) {
+    if (token) {
+        axios.defaults.headers.Authorization = authHeader(token);
+    }
     return axios.get(endPoint + '/stories');
 }
 export function getGames() {

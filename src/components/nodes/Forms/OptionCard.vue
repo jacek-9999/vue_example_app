@@ -1,10 +1,6 @@
 <template>
     <div>
-    <div v-if="is_loading" class="text-center">
-        <br/>
-        <Spinner></Spinner>
-    </div>
-    <b-card-group v-else  columns>
+    <b-card-group v-if="!is_loading"  columns>
         <b-card v-for="item in node.options" :key="item.id" :item="item" @click="setUnlinkOption(item.id)">
             <b-card-text>
                 {{item.title}}
@@ -138,12 +134,10 @@
 <script>
 import { mapGetters } from 'vuex'
 import Vue from 'vue'
-import Spinner from "../../Layout/Spinner";
 
 export default {
     name: 'OptionCard',
     components: {
-        Spinner
     },
     methods:{
         submitUnlink() {

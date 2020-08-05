@@ -20,8 +20,8 @@ export default {
                 'username': this.login,
                 'password': this.password
             };
-            this.$store.dispatch('login', payload).then(() => {
-                this.$store.dispatch('getAllStories').then(() => {
+            this.$store.dispatch('login', payload).then((token) => {
+                this.$store.dispatch('getAllStories', token).then(() => {
                     this.$store.dispatch('resetLoader');
                     this.$router.push({path: '/'});
                 });

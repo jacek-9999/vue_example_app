@@ -2,14 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import './assets/custom.scss'
 import { BootstrapVue, IconsPlugin, LayoutPlugin } from 'bootstrap-vue'
-// import { getNode, getAllStories, getStory } from './api'
-import {getAllStories, initAuth} from "./store/actions";
+import {initAuth} from "./store/actions";
 import store from './store'
 import router from './router'
 
 if (localStorage.getItem('token') !== null) {
   initAuth(store);
-  getAllStories(store);
 }
 
 
