@@ -7,6 +7,8 @@ import NodeNewForm from "./components/nodes/Forms/NodeNewForm";
 import GamesListBase from "./components/Game/GameListBase";
 import Game from "./components/Game/Game";
 import LoginForm from "./components/Login/LoginForm";
+import {setErrorMsg} from "./store/actions";
+import store from './store';
 
 Vue.use(Router);
 
@@ -85,15 +87,20 @@ let router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-    if(to.matched.some(record => record.meta.requiresAuth)) {
-        if (localStorage.getItem('token') == 'null') {
-            return next({
-                path: '/login',
-                params: { nextUrl: to.fullPath }
-            });
-        }
+    let emptyToken =
+        ((localStorage.getItem('token') == 'null') || (localStorage.getItem('token') == null));
+    if(
+        to.matched.some(record => record.meta.requiresAuth)
+        && emptyToken
+    ) {
+        setErrorMsg(store, 'Please login first');
+        router.push('/login');
+    } else if (!to.matched.length) {
+        setErrorMsg(store, 'Wrong route');
+        router.push('/games');
+    } else {
+        next();
     }
-    return next();
 });
 
 export default router

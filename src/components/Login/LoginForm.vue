@@ -25,8 +25,6 @@ export default {
                     this.$store.dispatch('resetLoader');
                     this.$router.push({path: '/'});
                 });
-            }).catch((cc) => {
-                console.log(cc);
             });
         }
     },

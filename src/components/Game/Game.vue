@@ -65,6 +65,8 @@ export default {
             getNode(id).then((node) => {
                 this.currentNode = node.data;
                 this.loader = false;
+            }).catch((cc) => {
+                this.$store.dispatch('setErrorMsg', cc.message);
             });
         }
     },
@@ -72,6 +74,8 @@ export default {
         getNode(this.$route.params.story_id).then((node) => {
             this.currentNode = node.data;
             this.loader = false;
+        }).catch((cc) => {
+            this.$store.dispatch('setErrorMsg', cc.message);
         });
     },
     computed: {

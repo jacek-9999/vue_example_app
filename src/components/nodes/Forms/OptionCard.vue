@@ -148,12 +148,10 @@ export default {
             this.$store.dispatch('unlinkNode', data).then(() => {
                    this.$store.dispatch('getAllStories').then(() => {
                        this.$store.dispatch('getNodeById', this.$route.params.node_id).then((data) => {
-                           Vue.set(this.node, data.data)
+                           Vue.set(this.node, data.data);
+                           this.$store.dispatch('resetLoader');
                        });
                    });
-                }).catch((err) => {
-                    // this.$router.push({ path: 'stories' });
-                    console.log(err);
                 });
             this.hideModal();
         },
@@ -176,10 +174,9 @@ export default {
                         this.$store.dispatch('createOption', optionData).then(() => {
                                     this.$store.dispatch('getAllStories').then(() => {
                                         this.$store.dispatch('getNodeById', this.$route.params.node_id).then((data) => {
-                                            Vue.set(this.node, data.data)
+                                            Vue.set(this.node, data.data);
+                                            this.$store.dispatch('resetLoader');
                                         });});});
-                }).catch((err) => {
-                    console.log(err);
                 });
         },
         submitAssign(targetId) {
@@ -191,11 +188,9 @@ export default {
                 .then(() => {
                         this.$store.dispatch('getAllStories').then(() => {
                             this.$store.dispatch('getNodeById', this.$route.params.node_id).then((data) => {
-                                Vue.set(this.node, data.data)
+                                Vue.set(this.node, data.data);
+                                this.$store.dispatch('resetLoader');
                             });});
-                }).catch((err) => {
-                    // this.$router.push({ path: 'stories' });
-                    console.log(err);
                 });
             this.hideModal();
         },

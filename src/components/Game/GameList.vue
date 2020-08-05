@@ -41,6 +41,8 @@ export default {
     mounted() {
         this.$store.dispatch('getGames').then(() => {
             this.$store.dispatch('resetLoader');
+        }).catch((cc) => {
+            this.$store.dispatch('setErrorMsg', cc.message);
         });
     }
 }

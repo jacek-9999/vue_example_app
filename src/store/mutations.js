@@ -54,5 +54,8 @@ export default {
     deleteToken(state) {
         localStorage.removeItem('token');
         state.token = null;
-    }
+    },
+    setErrorMsg(state, msg) {
+        state.current_error_msg = msg;
+    },
 }

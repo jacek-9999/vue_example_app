@@ -13,6 +13,7 @@
                     Playable Stories
                 </b-nav-item>
             </b-navbar-nav>
+            <Msg class="ml-auto"></Msg>
             <b-navbar-nav v-if="authorized" class="ml-auto">
                     <b-nav-item v-on:click="logout">
                         <b-icon icon="power" font-scale="1" variant="danger"></b-icon>
@@ -27,10 +28,12 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import Msg from './Msg';
 
 export default {
     name: 'Navbar',
     components: {
+        Msg
     },
     methods:{
       logout: function () {

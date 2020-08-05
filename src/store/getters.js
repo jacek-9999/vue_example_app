@@ -8,3 +8,4 @@ export const story_prepared_to_delete = (state) => state.story_prepared_to_delet
 export const is_loading = state => state.is_loading;
 export const authorized = state => !(state.token === null);
 export const token = state => state.token;
+export const current_error_msg = state => state.current_error_msg;

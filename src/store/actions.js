@@ -69,6 +69,13 @@ export const prepareStoryToDelete = ({commit}, story) => {
     commit('prepareStoryToDelete', story);
 };
 
+export const setErrorMsg = ({commit}, msg) => {
+    commit('setErrorMsg', msg);
+    setTimeout(() => {
+        commit('setErrorMsg', null);
+    }, 4000);
+};
+
 export const deleteNode = ({commit}, id) => {
     commit('isLoading', true);
     return api.deleteNode(id).then((data) => {
