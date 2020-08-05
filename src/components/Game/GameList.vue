@@ -39,7 +39,9 @@ export default {
         }),
     },
     mounted() {
-        this.$store.dispatch('getGames');
+        this.$store.dispatch('getGames').then(() => {
+            this.$store.dispatch('resetLoader');
+        });
     }
 }
 </script>

@@ -79,7 +79,9 @@ export default {
         },
         cancel: function () {
             this.$store.dispatch('getAllStories').then(() => {
-                this.$router.go(-1);
+                this.$store.dispatch('resetLoader').then(()=>{
+                    this.$router.go(-1);
+                });
             });
         },
         submit: function () {

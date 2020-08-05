@@ -14,7 +14,10 @@
                 </b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav v-if="authorized" class="ml-auto">
-                <b-nav-item v-on:click="logout">Logout</b-nav-item>
+                    <b-nav-item v-on:click="logout">
+                        <b-icon icon="power" font-scale="1" variant="danger"></b-icon>
+                        Logout
+                    </b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav v-else-if="!isPath('login')" class="ml-auto">
                 <b-nav-item :to="{path: '/login'}">Login</b-nav-item>
