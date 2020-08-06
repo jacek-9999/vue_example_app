@@ -118,6 +118,7 @@ export const login = ({commit}, payload) => {
 export const initAuth = ({commit}) => {
     let token = localStorage.getItem('token') || null;
     commit('setToken', token);
+    return Promise.resolve();
 };
 
 export const logout = ({commit}) => {

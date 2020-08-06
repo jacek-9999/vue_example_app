@@ -1,6 +1,6 @@
 <template>
     <div class="error-msg" v-if="current_error_msg">
-        <b-button variant="danger">
+        <b-button block variant="outline-danger">
             <b-icon icon="exclamation-square-fill" font-scale="2" animation="fade" variant="warning"></b-icon>
             {{current_error_msg}}
         </b-button>
@@ -12,8 +12,6 @@ import { mapGetters } from 'vuex'
 export default {
     name: 'Msg',
     methods:{
-        // msgOf: function() {
-        // },
     },
     mounted: function () {
     },

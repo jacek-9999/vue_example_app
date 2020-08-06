@@ -93,13 +93,11 @@ export default {
             };
             this.$store.dispatch('updateNode', data)
                 .then(() => {
-                    this.$store.dispatch('resetLoader').then(() => {
-                        this.$store.dispatch('getAllStories').then(() => {
+                    this.$store.dispatch('getAllStories').then(() => {
+                        this.$store.dispatch('resetLoader').then(() => {
                             this.$router.go(-1);
                         });
                     });
-                }).catch((err) => {
-                    console.log(err);
                 });
         },
         loadFormData: function () {
