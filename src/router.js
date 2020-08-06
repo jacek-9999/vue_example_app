@@ -7,7 +7,7 @@ import NodeNewForm from "./components/nodes/Forms/NodeNewForm";
 import GamesListBase from "./components/Game/GameListBase";
 import Game from "./components/Game/Game";
 import LoginForm from "./components/Login/LoginForm";
-import {setErrorMsg} from "./store/actions";
+import {setErrorMsg, logout} from "./store/actions";
 import store from './store';
 
 Vue.use(Router);
@@ -89,6 +89,13 @@ let router = new Router({
 router.beforeEach((to, from, next) => {
     let emptyToken =
         ((localStorage.getItem('token') == 'null') || (localStorage.getItem('token') == null));
+    if (!emptyToken) {
+        let expTime = store.getters.token_exp - Math.floor(Date.now()/1000);
+        if (expTime < 5) {
+            logout(store);
+        }
+    }
+
     if(
         to.matched.some(record => record.meta.requiresAuth)
         && emptyToken

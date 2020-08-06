@@ -2,7 +2,6 @@ import axios from 'axios';
 import authHeader from "./auth-header";
 
 const endPoint = 'http://localhost:8080';
-// axios.defaults.baseURL = 'http://';
 axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 axios.defaults.headers.Authorization = authHeader();

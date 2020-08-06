@@ -33,7 +33,6 @@ export default {
         }
         if ((!isLoading && (state.requests_pending === 0))
             || (isLoading && (state.requests_pending > 0))) {
-        //     Vue.set(state.fetch_stories_from_api, 'loading', isLoading);
             Vue.set(state, 'is_loading', isLoading);
         }
     },
@@ -45,15 +44,16 @@ export default {
     },
     resetLoader(state) {
         state.is_loading = false;
-        // state.fetch_stories_from_api.requests_pending = 0;
     },
     setToken(state, token) {
+        state.token_exp = JSON.parse(atob(token.split('.')[1])).exp;
         state.token = token;
         localStorage.setItem('token', token);
     },
     deleteToken(state) {
         localStorage.removeItem('token');
         state.token = null;
+        state.token_exp = null;
     },
     setErrorMsg(state, msg) {
         state.current_error_msg = msg;

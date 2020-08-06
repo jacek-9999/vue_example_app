@@ -17,6 +17,7 @@ const state = {
     requests_pending: 0,
     authorized: false,
     token: null,
+    token_exp: null,
     node: {},
     currentNode: {},
     node_prepared_to_delete: null,
@@ -29,7 +30,4 @@ export default new Vuex.Store({
   getters,
   actions,
   mutations,
-  // plugins: process.env.NODE_ENV !== 'production'
-  //   ? [createLogger()]
-  //   : []
 });
