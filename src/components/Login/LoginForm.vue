@@ -3,8 +3,8 @@
             <b-card bg-variant="light">
                 <b-icon icon="power" font-scale="4" variant="info" animation="throb"></b-icon>
                 <p>Welcome</p>
-                <b-form-input v-model="login" placeholder="Login"></b-form-input>
-                <b-form-input v-model="password" type="password" placeholder="Password"></b-form-input>
+                <b-form-input v-on:keyup.enter="submit" v-model="login" placeholder="Login"></b-form-input>
+                <b-form-input v-on:keyup.enter="submit" v-model="password" type="password" placeholder="Password"></b-form-input>
                 <hr>
             <b-button variant="info" @click="submit">Login</b-button>
         </b-card>
