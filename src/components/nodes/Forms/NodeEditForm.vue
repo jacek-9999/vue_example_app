@@ -88,7 +88,7 @@ export default {
             let data = {
                 'title': this.title,
                 'description': this.description,
-                'is_final': this.is_final,
+                'is_final': this.is_final[0],
                 'id': this.$route.params.node_id
             };
             this.$store.dispatch('updateNode', data)
